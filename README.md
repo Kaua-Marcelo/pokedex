@@ -13,7 +13,7 @@ Projeto UniAmérica, desenvolvimento WEB <br/>
 <br>
 
 <p align="center">
-  <img alt="Projeto Pokedex" src="./assets/Protótipo/readme.png" width="100%">
+  <img alt="Projeto Pokedex" src="./assets/Readme.png" width="100%">
 </p>
 
 ## 🚀 Tecnologias
@@ -28,5 +28,12 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 💻 Projeto
 
 A pokedex é um local onde o usuário pode obter informações sobre Pokemons.
+
+## Desenvolvido Por:
+
+Kauã Marcelo
+Gabriel Fukuro
+Giovany Emanuel
+Samuel Vieira
 
 ---
