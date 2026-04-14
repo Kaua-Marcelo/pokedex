@@ -8,7 +8,29 @@ const pokemons = [
      height: 0.6,
      weakness: ["Water", "Rock", "Ground"],
      about: "A chama na ponta de sua calda indica sua força vital, quando brilha intensamente, significa que está saudável, se enfraquece, seu estado é preocupante. Mesmo sendo naturalmente dócil, pode se tornar feroz em batalhas, soltando poderosas chamas contra seus oponentes.",
-     image: "./assets/Charmander.png"
+     image: "./assets/Charmander.png",
+     evolutions: [
+      {
+       id: 10,
+       name: "Charmeleon",
+       type: ["Fire"],
+       category: ["Flame"],
+       weight: 19.0,
+       height: 1.1,
+       weakness: ["Water", "Rock", "Ground"],
+       image: "./assets/Charmeleon.png"
+      },
+      {
+       id: 11,
+       name: "Charizard",
+       type: ["Fire", "Flying"],
+       category: ["Flame"],
+       weight: 90.5,
+       height: 1.7,
+       weakness: ["Water", "Electric", "Rock"],
+       image: "./assets/Charizard.png"
+      }
+     ]
     },
     {
      id: 2,
@@ -19,7 +41,29 @@ const pokemons = [
      height: 0.5,
      weakness: ["Electric", "Grass"],
      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", // As demais descrições serão adicionadas posteriormente
-     image: "./assets/Squirtle.png"
+     image: "./assets/Squirtle.png",
+     evolutions: [
+      {
+       id: 12,
+       name: "Wartortle",
+       type: ["Water"],
+       category: ["Turtle"],
+       weight: 22.5,
+       height: 1.0,
+       weakness: ["Electric", "Grass"],
+       image: "./assets/Wartortle.png"
+      },
+      {
+       id: 13,
+       name: "Blastoise",
+       type: ["Water"],
+       category: ["Shellfish"],
+       weight: 85.5,
+       height: 1.6,
+       weakness: ["Electric", "Grass"],
+       image: "./assets/Blastoise.png"
+      }
+     ]
     },
     {
      id: 3,
@@ -30,7 +74,8 @@ const pokemons = [
      height: 2.0,
      weakness: ["Bug", "Ghost", "Dark"],
      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-     image: "./assets/Mewtwo.png"
+     image: "./assets/Mewtwo.png",
+     evolutions: []
     },
     {
      id: 4,
@@ -41,7 +86,8 @@ const pokemons = [
      height: 2.1,
      weakness: ["Fighting"],
      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-     image: "./assets/Snorlax.png"
+     image: "./assets/Snorlax.png",
+     evolutions: []
     },
     {
      id: 5,
@@ -52,7 +98,19 @@ const pokemons = [
      height: 0.4,
      weakness: ["Ground"],
      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-     image: "./assets/Pikachu.png"
+     image: "./assets/Pikachu.png",
+     evolutions: [
+      {
+       id: 14,
+       name: "Raichu",
+       type: ["Electric"],
+       category: ["Mouse"],
+       weight: 30.0,
+       height: 0.8,
+       weakness: ["Ground"],
+       image: "./assets/Raichu.png"
+      }
+     ]
     },
     {
      id: 6,
@@ -63,7 +121,8 @@ const pokemons = [
      height: 0.8,
      weakness: ["Ground"],
      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-     image: "./assets/Jolteon.png"
+     image: "./assets/Jolteon.png",
+     evolutions: []
     },
     {
      id: 7,
@@ -74,7 +133,19 @@ const pokemons = [
      height: 0.7,
      weakness: ["Water", "Rock", "Ground"],
      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-     image: "./assets/Growlithe.png"
+     image: "./assets/Growlithe.png",
+     evolutions: [
+      {
+       id: 15,
+       name: "Arcanine",
+       type: ["Fire"],
+       category: ["Legendary"],
+       weight: 155.0,
+       height: 1.9,
+       weakness: ["Water", "Rock", "Ground"],
+       image: "./assets/Arcanine.png"
+      }
+     ]
     },
     {
      id: 8,
@@ -85,7 +156,19 @@ const pokemons = [
      height: 0.8,
      weakness: ["Ground", "Psychic"],
      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-     image: "./assets/Nidorina.png"
+     image: "./assets/Nidorina.png",
+     evolutions: [
+      {
+       id: 16,
+       name: "Nidoqueen",
+       type: ["Poison", "Ground"],
+       category: ["Drill"],
+       weight: 60.0,
+       height: 1.3,
+       weakness: ["Water", "Ice", "Psychic", "Ground"],
+       image: "./assets/Nidoqueen.png"
+      }
+     ]
     },
     {
      id: 9,
@@ -96,7 +179,29 @@ const pokemons = [
      height: 0.7,
      weakness: ["Fire", "Ice", "Flying", "Psychic"],
      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-     image: "./assets/Bulbasaur.png"
+     image: "./assets/Bulbasaur.png",
+     evolutions: [
+      {
+       id: 17,
+       name: "Ivysaur",
+       type: ["Grass", "Poison"],
+       category: ["Seed"],
+       weight: 13.0,
+       height: 1.0,
+       weakness: ["Fire", "Ice", "Flying", "Psychic"],
+       image: "./assets/Ivysaur.png"
+      },
+      {
+       id: 18,
+       name: "Venusaur",
+       type: ["Grass", "Poison"],
+       category: ["Seed"],
+       weight: 100.0,
+       height: 2.0,
+       weakness: ["Fire", "Ice", "Flying", "Psychic"],
+       image: "./assets/Venusaur.png"
+      }
+     ]
     },
     {
      id: 10,
@@ -107,6 +212,18 @@ const pokemons = [
      height: 1.1,
      weakness: ["Water", "Rock", "Ground"],
      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-     image: "./assets/Charmeleon.png"
+     image: "./assets/Charmeleon.png",
+     evolutions: [
+      {
+       id: 11,
+       name: "Charizard",
+       type: ["Fire", "Flying"],
+       category: ["Flame"],
+       weight: 90.5,
+       height: 1.7,
+       weakness: ["Water", "Electric", "Rock"],
+       image: "./assets/Charizard.png"
+      }
+     ]
     }
 ]
