@@ -13,7 +13,7 @@ Projeto UniAmérica, desenvolvimento WEB <br/>
 <br>
 
 <p align="center">
-  <img alt="Projeto Pokedex" src="./assets/Readme.png" width="100%">
+  <img alt="Projeto Pokedex" src="assets/ReadMe.png" width="100%">
 </p>
 
 ## 🚀 Tecnologias
