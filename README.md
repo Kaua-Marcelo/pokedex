@@ -1,4 +1,7 @@
 <h1 align="center"> Pokedex </h1>
+<p align="center">
+    <img src="https://img.shields.io/badge/status-em%20desenvolvimento-yellow" alt="badge">
+</p>
 
 <p align="center">
 Projeto UniAmérica, desenvolvimento WEB <br/>
