@@ -1,7 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body{
@@ -10,4 +9,23 @@ body{
     background-position: center;
     background-repeat:  no-repeat;
     min-height: 100dvh;
+}
+
+#overview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #9ABCF8;
+    padding: 0 16px;
+}
+
+.header-left a {
+    font-size: 70px;
+    color: black;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
