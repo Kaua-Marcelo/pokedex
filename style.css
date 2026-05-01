@@ -89,3 +89,67 @@ body{
     position: absolute;
     bottom: 20px;
 }
+
+.fav h2{
+    text-align: center;
+    font-size: 40px;
+    margin: 1%;
+
+}
+
+.fav .busca-poke{
+    display: block;
+    margin: 15px auto;
+    font-size: 10px;
+    text-align-last: left;
+    border:none;    
+    border-radius: 50px;
+    background-color: rgb(219, 222, 224);
+    padding: 20px ;
+    outline: none;
+    width: 500px;
+}
+
+.fav .sort-id{
+    margin: 10px;
+    font-size: 8px;
+    border:none;    
+    border-radius: 50px;
+    background-color: #dbdee0;
+    padding: 5px ;
+    outline: none;
+    width: 200px;
+}
+
+.fav .sort-id select{
+    font-size: 8px;
+    border: 2px solid black;    
+    border-radius: 11px;
+    background-color:#dbdee0;
+    padding: 2px;
+    outline: none;
+    width: 100px;
+    cursor: pointer;
+}
+
+.fav .tipo-poke{
+     margin: 10px;
+    font-size: 8px;
+    border:none;    
+    border-radius: 50px;
+    background-color: rgb(219, 222, 224);
+    padding: 5px ;
+    outline: none;
+    width: fit-content;
+}
+
+.fav .tipo-poke select{
+    font-size: 8px;
+    border: 2px solid black;    
+    border-radius: 11px;
+    background-color:rgb(219, 222, 224);
+    padding: 2px;
+    outline: none;
+    width: 50px;
+    cursor: pointer;
+}

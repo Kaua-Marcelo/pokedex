@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"/>
 </head>
-<body id="fav">
+<body class="fav">
     <header id="header-bar">
       <div class="header-left">
         <a href="index.html">
@@ -21,8 +21,27 @@
       <button class="btn-menu"><i class="fa-solid fa-bars"></i></button>
     </header>
         <h2>My Favorites</h2>
-        <p>Enter a name or id </p>
-        <p>sort by: ID (Ascending)</p>
-        <p></p>
+        <p class="busca-poke">Enter a name or id</p>
+
+        <div class="sort-id">
+          <label>Sort by: ID </label>
+          <select>
+            <option>Ascending</option>
+            <option>Decreasing</option>
+          </select>
+
+        </div>
+        <div class="tipo-poke">
+          <label>Type:</label>
+          
+          <select>
+           <option>ALL</option>
+           <option>Fire</option>
+           <option>Water</option>
+           <option>Grass</option>
+
+          </select>
+
+        </div>
 </body>
 </html>
