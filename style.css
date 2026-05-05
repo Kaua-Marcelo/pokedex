@@ -10,7 +10,7 @@ body{
     background-position: center;
     background-repeat:  no-repeat;
     min-height: 100dvh;
-    background-attachment: fixed
+    background-attachment:fixed
 }
 
 #header-bar {
@@ -118,4 +118,90 @@ body{
     border: none;
     padding: 0 20px;
     font-size: 16px;
+}
+
+/*css de pagina favoritos*/
+.fav h2{
+    text-align: center;
+    font-size: 40px;
+    margin: 1%;
+
+}
+
+.fav .busca-poke{
+    display: block;
+    margin: 15px auto;
+    font-size: 10px;
+    text-align-last: left;
+    border:none;    
+    border-radius: 50px;
+    background-color: rgb(219, 222, 224);
+    padding: 20px ;
+    outline: none;
+    width: 500px;
+}
+
+.fav .sort-id{
+    margin: 10px;
+    margin-left: 40px;
+
+    font-size: 10px;
+    border:none;    
+    border-radius: 50px;
+    background-color: #dbdee0;
+
+    padding: 5px ;
+    outline: none;
+    width: 250px;
+}
+
+.fav .sort-id select{
+    font-size: 10px;
+    border: 2px solid black;    
+    border-radius: 12px;
+    background-color:#dbdee0;
+    padding: 2px;
+    outline: none;
+    width: 160px;
+    cursor: pointer;
+}
+
+.fav .tipo-poke{
+     margin: 12px;
+     margin-left: 40px;
+    font-size: 10px;
+    border:none;    
+    border-radius: 50px;
+    background-color: rgb(219, 222, 224);
+    padding: 5px ;
+    outline: none;
+    width: fit-content;
+}
+
+.fav .tipo-poke select{
+    font-size: 10px;
+    border: 2px solid black;    
+    border-radius: 11px;
+    background-color:rgb(219, 222, 224);
+    padding: 2px;
+    outline: none;
+    width: 50px;
+    cursor: pointer;
+}
+
+/*css de pagina favoritos*/
+
+/*cards dos pokemons*/
+
+.fav #favoritos .card{
+margin: 40px;
+margin-left: 40px;
+
+
+border:none;    
+border-radius: 30px;
+background-color: rgb(219, 222, 224);
+padding: 35px ;
+outline: none;
+width: fit-content;
 }
