@@ -95,7 +95,6 @@ body{
 #register {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -119,12 +118,10 @@ body{
 }
 
 .form-register input {
-    width: 100%;
-    max-width: 300px;
+    width: 95%;
     height: 65px;
     border-radius: 20px;
-    border: none;
-    padding: 0 40px;
+    padding: 0 10px;
     font-size: 15px;
     background: transparent;
     border: 1px solid white;
@@ -136,7 +133,6 @@ body{
     color: white;
     font-size: 15px;
     border-radius: 20px;
-    max-width: 380px;
     cursor: pointer;
     border: none;
     width: 100%;
