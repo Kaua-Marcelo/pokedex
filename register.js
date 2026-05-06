@@ -1,18 +1,18 @@
 const inputs = document.querySelectorAll(".form-register input")
-const email = inputs[0]
+const user = inputs[0]
 const senha = inputs[1]
 const confirma = inputs[2]
 
 const botao = document.querySelector(".form-register button")
 
 botao.addEventListener('click', () => {
-    if (!email.value || !senha.value || !confirma.value) {
+    if (!user.value || !senha.value || !confirma.value) {
         alert("Preencha todos os campos!")
         return
     }
 
-    if (!email.value.includes("@")) {
-        alert("Email Inválido!")
+    if (!user.value.length < 2) {
+        alert("O usuário deve conter pelo menos 2 caracteres!")
         return
     }
 
@@ -27,7 +27,7 @@ botao.addEventListener('click', () => {
     }
 
     const usuario = {
-        email: email.value,
+        user: user.value,
         senha: senha.value
     }
     localStorage.setItem("usuario", JSON.stringify(usuario))
