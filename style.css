@@ -34,7 +34,14 @@ body{
     width: 200px;
 }
 
-.header-title {
+.header-title a {
+    color: inherit;
+    margin: 0;
+    font-size: 45px;
+    text-decoration: none;
+}
+
+.header-title{
     margin: 0;
     font-size: 45px;
 }
