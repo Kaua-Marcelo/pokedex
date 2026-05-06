@@ -34,7 +34,14 @@ body{
     width: 200px;
 }
 
-.header-title {
+.header-title a {
+    color: inherit;
+    margin: 0;
+    font-size: 45px;
+    text-decoration: none;
+}
+
+.header-title{
     margin: 0;
     font-size: 45px;
 }
@@ -226,7 +233,7 @@ body{
 
     padding: 5px ;
     outline: none;
-    width: 250px;
+    width: 260px;
 }
 
  .sort-id select{
@@ -236,7 +243,7 @@ body{
     background-color:#dbdee0;
     padding: 2px;
     outline: none;
-    width: 160px;
+    width: 170px;
     cursor: pointer;
 }
 
@@ -259,7 +266,7 @@ body{
     background-color:rgb(219, 222, 224);
     padding: 2px;
     outline: none;
-    width: 50px;
+    width: 80px;
     cursor: pointer;
 }
 
@@ -279,22 +286,41 @@ body{
 margin: 20px;
 margin-left: 35px;
 
-
 border:none;    
 border-radius: 30px;
 background-color: rgb(219, 222, 224);
 padding: 20px ;
 outline: none;
 width: 200px;
-height: 250px;
+height: 260px;
 display: flex;
 flex-direction: column;
 gap: 12px;
-align-items: center;
+
 
 }
 
 .card img{
     width: 200px;
+    height: 175px;
+    object-fit:contain;
 }
 
+p1{
+    font-size: 20px;
+}
+
+.estrela{
+    position: relative;
+    font-size: 40px;
+    bottom: 60px;
+    left: 180px;
+    color: rgb(242, 242, 38);
+
+}
+.lupa{
+ position: absolute;
+ font-size: 35px;
+ bottom: 625px;
+ right: 510px;
+}
