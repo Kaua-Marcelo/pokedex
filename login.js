@@ -4,9 +4,20 @@ const senha = inputs[1]
 
 const botao = document.querySelector(".form-login button")
 
+function mostrarErro(input, mensagem) {
+    input.nextElementSibling.textContent = mensagem
+}
+
+function limparErros() {
+    document.querySelectorAll(".erro").forEach(e => e.textContent = '')
+}
+
+
 botao.addEventListener('click', () => {
+    limparErros()
+
     if (!user.value || !senha.value) {
-        alert("Preencha todos os campos")
+        mostrarErro(user, "Preencha todos os campos")
         return
     }
 
@@ -18,7 +29,7 @@ botao.addEventListener('click', () => {
     }
 
     if (user.value !== usuarioSalvo.user || senha.value !== usuarioSalvo.senha) {
-        alert("E-mail ou senha incorretos!")
+        mostrarErro(senha, "E-mail ou senha incorretos!")
         return
     }
 
