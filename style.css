@@ -312,7 +312,6 @@ body{
   justify-content: start;
 }
 
-<<<<<<< HEAD
 .card{
 margin: 20px;
 margin-left: 35px;
@@ -329,29 +328,6 @@ flex-direction: column;
 gap: 12px;
 
 
-=======
-/* =========================================
-   ESTRUTURA DO CARD E EFEITOS
-   ========================================= */
-.card {
-  margin: 20px;
-  margin-left: 35px;
-  border: none;    
-  border-radius: 30px;
-  background-color: rgb(219, 222, 224);
-  padding: 20px;
-  width: 200px;
-  height: 260px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; 
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-  transform-style: preserve-3d;
-  position: relative; 
-  overflow: hidden; 
->>>>>>> f5326e5f9f6650d364f5e3997227448d4995c5d1
 }
 
 /* O Foil (Brilho Holográfico) */

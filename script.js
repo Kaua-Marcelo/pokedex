@@ -640,10 +640,5 @@ const pokemons = {
       "name": "feraligatr",
       "url": "https://pokeapi.co/api/v2/pokemon/160/"
     }
-<<<<<<< HEAD
   ]
 }
-=======
-]
-
->>>>>>> f5326e5f9f6650d364f5e3997227448d4995c5d1
