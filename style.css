@@ -4,8 +4,19 @@
     font-family: 'Press Start 2P', monospace;
 }
 
+
+
+.login{
+    background-image: url(https://i.redd.it/74crvhb3vyn61.png) ;
+    background-size: cover;
+    background-position: center;
+    background-repeat:  no-repeat;
+    min-height: 100dvh;
+    background-attachment:fixed
+}
+
 body{
-    background-image: url("https://wallpapers-clan.com/wp-content/uploads/2025/12/pokemon-eevee-slides-on-frozen-pond-desktop-wallpaper-preview.jpg");
+    background-image: url("https://i.redd.it/tk9kh35sb4od1.png");
     background-size: cover;
     background-position: center;
     background-repeat:  no-repeat;
@@ -17,7 +28,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #9ABCF8;
+    background-color: #9abdf800;
     padding: 0 16px;
 }
 
