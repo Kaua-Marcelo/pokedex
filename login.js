@@ -29,7 +29,7 @@ botao.addEventListener('click', () => {
     }
 
     if (user.value !== usuarioSalvo.user || senha.value !== usuarioSalvo.senha) {
-        mostrarErro(senha, "E-mail ou senha incorretos!")
+        mostrarErro(senha, "Usuário ou senha incorretos!")
         return
     }
 
