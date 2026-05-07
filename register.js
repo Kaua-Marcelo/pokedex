@@ -16,6 +16,12 @@ function limparErros() {
 botao.addEventListener('click', () => {
     limparErros()
 
+    const usuarioExistente = JSON.parse(localStorage.getItem("usuario"))
+    if (usuarioExistente && user.value === usuarioExistente.user) {
+        mostrarErro(user, "Este usuário já existe!")
+        return
+    }
+
     if (!user.value || !senha.value || !confirma.value) {
         mostrarErro(user, "Preencha todos os campos!")
         return
