@@ -11,7 +11,7 @@ botao.addEventListener('click', () => {
         return
     }
 
-    if (!user.value.length < 2) {
+    if (user.value.length < 2) {
         alert("O usuário deve conter pelo menos 2 caracteres!")
         return
     }
@@ -33,6 +33,6 @@ botao.addEventListener('click', () => {
     localStorage.setItem("usuario", JSON.stringify(usuario))
 
     alert("Conta criada com sucesso!")
-    window.location.href= "index.html"
+    window.location.href= "login.html"
 
 })
