@@ -43,7 +43,7 @@ const pokemons = [
      height: 0.5,
      weakness: ["Electric", "Grass"],
      about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", // As demais descrições serão adicionadas posteriormente
-     image: "./assets/Squirtle.png",
+     image: "./assets/Squirtle-PNG-Image-File.png",
      evolutions: [
       {
        id: 12,

@@ -410,7 +410,7 @@ body{
 .tipo-planta { background-color: #77CC55; }
 .tipo-psiquico { background-color: #FF5599; }
 .tipo-eletrico { background-color: #FFCC00; }
-.tipo-venenoso { background-color: #AA5599; color: white; }
+.tipo-venenoso { background-color: #AA5599; }
 .tipo-normal { background-color: #AAAA99; }
 
 .lupa{
