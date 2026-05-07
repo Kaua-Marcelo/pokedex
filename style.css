@@ -16,6 +16,7 @@
 }
 
 body{
+    overflow-x: hidden;
     background-image: url("https://i.redd.it/tk9kh35sb4od1.png");
     background-size: cover;
     background-position: center;
@@ -317,7 +318,7 @@ margin-left: 35px;
 
 border:none;    
 border-radius: 30px;
-background-color: rgb(219, 222, 224);
+background-color: rgba(219, 222, 224, 0.989);
 padding: 20px ;
 outline: none;
 width: 200px;
@@ -365,12 +366,177 @@ gap: 12px;
     align-self: flex-start;
 }
 
+/* FIRE */
 .Fire{
-    border: none ;
-    background-color: orange;
+    background-color: #F97316;
+    border: none;
     border-radius: 30px;
-    border-width: 20px;
     padding: 5px;
     width: 90px;
+}
 
+/* WATER */
+.Water{
+    background-color: #3B82F6;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 90px;
+}
+
+/* GRASS */
+.Grass{
+    background-color: #22C55E;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 90px;
+}
+
+/* ELECTRIC */
+.Electric{
+    background-color: #FACC15;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 110px;
+}
+
+/* PSYCHIC */
+.Psychic{
+    background-color: #EC4899;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 110px;
+}
+
+/* ICE */
+.Ice{
+    background-color: #7DD3FC;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 80px;
+}
+
+/* DRAGON */
+.Dragon{
+    background-color: #7C3AED;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 110px;
+}
+
+/* DARK */
+.Dark{
+    background-color: #44403C;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 90px;
+}
+
+/* FAIRY */
+.Fairy{
+    background-color: #F9A8D4;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 90px;
+}
+
+/* NORMAL */
+.Normal{
+    background-color: #A8A29E;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 100px;
+}
+
+/* FIGHTING */
+.Fighting{
+    background-color: #B91C1C;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 110px;
+}
+
+/* FLYING */
+.Flying{
+    background-color: #60A5FA;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 100px;
+}
+
+/* POISON */
+.Poison{
+    background-color: #A855F7;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 100px;
+}
+
+/* GROUND */
+.Ground{
+    background-color: #CA8A04;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 100px;
+}
+
+/* ROCK */
+.Rock{
+    background-color: #78716C;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 90px;
+}
+
+/* BUG */
+.Bug{
+    background-color: #84CC16;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 80px;
+}
+
+/* GHOST */
+.Ghost{
+    background-color: #6D28D9;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 100px;
+}
+
+/* STEEL */
+.Steel{
+    background-color: #94A3B8;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 90px;
+}
+
+/* STELLAR */
+.Stellar{
+    background-color: #38BDF8;
+    border: none;
+    border-radius: 30px;
+    padding: 5px;
+    width: 100px;
 }
