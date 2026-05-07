@@ -118,7 +118,7 @@ body{
 
 #register h2 {
     margin-top: 50px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .form-register {
@@ -158,6 +158,11 @@ body{
 }
 
 /* css login */
+
+.create {
+        text-decoration: none;
+    color: blue;
+}
 
 #login {
     display: flex;
