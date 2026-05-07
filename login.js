@@ -17,7 +17,7 @@ botao.addEventListener('click', () => {
     limparErros()
 
     if (!user.value || !senha.value) {
-        mostrarErro(user, "Preencha todos os campos")
+        mostrarErro(user, "Preencha todos os campos!")
         return
     }
 
