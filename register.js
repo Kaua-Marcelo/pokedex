@@ -5,24 +5,36 @@ const confirma = inputs[2]
 
 const botao = document.querySelector(".form-register button")
 
+function mostrarErro(mensagem) {
+    const erro = document.querySelector(".erro")
+    erro.textContent = mensagem
+}
+
+// função que limpa o erro
+function limparErro() {
+    document.querySelector(".erro").textContent = ''
+}
+
 botao.addEventListener('click', () => {
+    limparErro()
+
     if (!user.value || !senha.value || !confirma.value) {
-        alert("Preencha todos os campos!")
+        mostrarErro("Preencha todos os campos!")
         return
     }
 
     if (user.value.length < 2) {
-        alert("O usuário deve conter pelo menos 2 caracteres!")
+        mostrarErro("O usuário deve conter pelo menos 2 caracteres!")
         return
     }
 
     if (senha.value !== confirma.value) {
-        alert("As senhas não coincidem!")
+        mostrarErro("As senhas não coincidem!")
         return
     }
 
     if (senha.value.length < 4) {
-        alert("A senha deve conter pelo menos 4 caracteres")
+        mostrarErro("A senha deve conter pelo menos 4 caracteres")
         return
     }
 
