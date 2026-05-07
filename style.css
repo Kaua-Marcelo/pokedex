@@ -301,52 +301,109 @@ body{
 
 /*css de pagina favoritos*/
 
-/*cards dos pokemons*/
+/* --- CONTAINER DE FAVORITOS --- */
 .fav #favoritos {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px; /* espaço entre os cards */
+  gap: 5px;
   justify-content: start;
+}
 
+/* --- CARD PRINCIPAL --- */
+.card {
+  margin: 20px;
+  margin-left: 35px;
+  border: none;    
+  border-radius: 30px;
+  background-color: rgb(219, 222, 224); /* Seu cinza */
+  padding: 20px;
+  outline: none;
+  width: 200px;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  /* --- NOVOS ESTILOS PARA O EFEITO 3D E LUZ --- */
+  cursor: pointer;
   
+  /* Sombra base suave */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+  
+  /* Prepara para o movimento e 3D. 
+     will-change: transform ajuda na performance */
+  transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+  
+  /* Mantém a luz e a estrela presas ao card */
+  position: relative; 
+  
+  /* IMPORTANTE: Corta a luz para não vazar das bordas redondas de 30px */
+  overflow: hidden; 
 }
 
-.card{
-margin: 20px;
-margin-left: 35px;
-
-border:none;    
-border-radius: 30px;
-background-color: rgb(219, 222, 224);
-padding: 20px ;
-outline: none;
-width: 200px;
-height: 260px;
-display: flex;
-flex-direction: column;
-gap: 12px;
-
-
+/* --- CAMADA DE LUZ --- */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  
+  /* Adicionamos '150px' para forçar a bola de luz a ser pequena. 
+     As cores estão com opacidade 0.2 para ficarem bem sutis. */
+  background: radial-gradient(
+    circle 150px at var(--luz-x, 50%) var(--luz-y, 50%), 
+    rgba(255, 255, 255, 0.5) 0%,      /* Centro branco suave */
+    rgba(255, 150, 200, 0.2) 30%,     /* Rosa bem fraquinho */
+    rgba(150, 255, 200, 0.2) 60%,     /* Verde bem fraquinho */
+    rgba(150, 200, 255, 0.2) 80%,     /* Azul bem fraquinho */
+    transparent 100%                  /* Apaga totalmente a borda da bola */
+  );
+  
+  mix-blend-mode: hard-light; 
+  
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
 }
 
-.card img{
-    width: 200px;
-    height: 175px;
-    object-fit:contain;
+/* Acende o foil no hover */
+.card:hover::before {
+  opacity: 0.8; 
 }
 
-.Nome-principal{
-    font-size: 20px;
+/* Transição de reset que o JavaScript usa para voltar suavemente */
+.card.reset {
+  transition: transform 0.5s ease;
 }
 
-.estrela{
-    position: relative;
-    font-size: 40px;
-    bottom: 60px;
-    left: 180px;
-    color: rgb(242, 242, 38);
-
+/* --- SEUS ELEMENTOS INTERNOS (MANTIDOS) --- */
+.card img {
+  width: 200px;
+  height: 175px;
+  object-fit: contain;
 }
+
+.Nome-principal {
+  font-size: 20px;
+}
+
+/* --- SUA ESTRELA (MANTIDA, COM PEQUENA AJUDA) --- */
+.estrela {
+  position: relative;
+  font-size: 40px;
+  bottom: 60px;
+  left: 180px;
+  color: rgb(242, 242, 38);
+  
+  /* Garante que a estrela apareça por cima da luz branca */
+  z-index: 11; 
+  
+  /* Evita que passar o mouse sobre a estrela deponha a interação do card */
+  pointer-events: none; 
+}
+
 .lupa{
  position: absolute;
  font-size: 35px;
