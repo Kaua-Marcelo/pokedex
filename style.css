@@ -131,7 +131,7 @@ body{
     max-width: 400px;
     height: 400px;
     border-radius: 50px;
-    gap: 31px;
+    gap: 10px;
     background-color: black;
 }
 
@@ -334,4 +334,15 @@ p1{
  font-size: 35px;
  bottom: 625px;
  right: 510px;
+}
+
+/* mensagem de erro */
+
+.erro {
+    color: red;
+    font-size: 11px;
+    margin-top: -4px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    align-self: flex-start;
 }
