@@ -1,4 +1,4 @@
-/*const pokemons = {
+{
     "results": [
     {
       "name": "bulbasaur",
@@ -640,4 +640,7 @@
       "name": "feraligatr",
       "url": "https://pokeapi.co/api/v2/pokemon/160/"
     }
-  ]*/
+  ]
+}
+
+    

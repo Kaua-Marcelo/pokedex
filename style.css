@@ -396,7 +396,7 @@ gap: 12px;
 /* A Estrela */
 .estrela {
   font-size: 30px;
-  color: rgb(242, 242, 38);
+  color: rgb(82, 82, 82);
   margin: 0;
 }
 
@@ -600,4 +600,56 @@ gap: 12px;
     border-radius: 30px;
     padding: 5px;
     width: 100px;
+}
+
+/* Cor Fantasma (Roxo escuro/azulado) */
+.tipo-fantasma { 
+  background-color: #705898 !important;  
+}
+
+/* Cor Lutador (Marrom avermelhado/Tijolo) */
+.tipo-lutador { 
+  background-color: #C03028 !important; 
+}
+
+/* Cor Terra (Amarelo queimado/Argila) */
+.tipo-terra { 
+  background-color: #E0C068 !important; 
+}
+
+/* Cor Gelo (Azul claro cristalino) */
+.tipo-gelo { 
+  background-color: #98D8D8 !important; 
+}
+
+/* Cor Dragão (Índigo/Roxo real) */
+.tipo-dragao { 
+  background-color: #7038F8 !important;  
+}
+
+/* Cor Inseto (Verde lima/oliva) */
+.tipo-inseto { 
+  background-color: #A8B820 !important; 
+}
+
+.tipo-fada { 
+  background-color: #EE99AC !important; 
+}
+
+.poke-gif {
+  height: 110px !important; /* Tamanho ideal para GIFs de Gen 5 */
+  width: auto !important;
+  image-rendering: pixelated; /* Deixa os pixels nítidos e não borrados */
+  margin: auto;
+  display: block;
+}
+
+#principal {
+  display: flex;
+  flex-wrap: wrap;      /* Faz as cartas ficarem lado a lado e quebrarem linha */
+  gap: 0px;            /* Espaço entre uma carta e outra */
+  justify-content: center; /* Centraliza o bloco de cartas na tela */
+  padding: 40px 20px;   /* Espaço nas laterais e no topo */
+  width: 100%;          /* Garante que ocupe a largura total */
+  box-sizing: border-box;
 }

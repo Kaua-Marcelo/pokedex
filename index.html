@@ -21,7 +21,50 @@
       <button class="btn-menu"><i class="fa-solid fa-bars"></i></button>
     </header>
 
-    <script src="script.js"></script>
-    <script src="card-motion.js"></script>
+<div class="busca-poke">
+          <p>Enter a name or id</p>
+          <div class="lupa">⌕</div>
+        </div>
+        
+
+        <div class="sort-id">
+          <label>Sort by:  </label>
+          <select>
+            
+            <option>ID (Ascending)</option>
+            <option>ID (Decreasing)</option>
+            <option>Name (A-Z)</option>
+            <option>Name (Z-A)</option>
+            <option>Weakness (A-Z)</option>
+            <option>Weakness (Z-A)</option>
+            <option>Category (A-Z)</option>
+            <option>Category (Z-A)</option>
+            <option>Type (A-Z)</option>
+            <option>Type (Z-A)</option>
+
+
+          </select>
+
+        </div>
+        <div class="tipo-poke">
+          <label>Type:</label>
+          
+          <select>
+           <option>ALL</option>
+           <option class="teste">Fire</option>
+           <option>Water</option>
+           <option>Grass</option>
+
+          </select>
+
+        </div>
+
+        
+        <div id="principal">
+         
+        </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="card-motion.js"></script>
 </body>
 </html>
