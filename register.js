@@ -42,13 +42,21 @@ botao.addEventListener('click', () => {
         return
     }
 
-    const usuario = {
+     const usuario = {
         user: user.value,
         senha: senha.value
     }
     localStorage.setItem("usuario", JSON.stringify(usuario))
 
-    alert("Conta criada com sucesso!")
-    window.location.href= "login.html"
 
-})
+    limparFormularioDeRegistro(); // Função simples para sumir com o form
+    mostrarEscolhaInicial();      // Essa função está lá no card-motion.js
+});
+
+function limparFormularioDeRegistro() {
+    const form = document.querySelector(".form-register");
+    if(form) form.style.display = "none";
+    // Se tiver um h1 ou texto de "Crie sua conta", pode esconder também
+    const titulo = document.querySelector("h1");
+    if(titulo) titulo.textContent = "BEM-VINDO, TREINADOR!";
+}
