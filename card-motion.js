@@ -217,6 +217,18 @@ if (document.getElementById('principal')) {
 inicializarAnimacoes();
 
 
+// Função de busca, que é ativada no index.html quando o usuário digita algo no input
+
+function inicializarBusca() {
+    const inputBusca = document.getElementById('input-busca')
+    if (!inputBusca) return
+
+    inputBusca.addEventListener('input', () => {
+        const termo = inputBusca.value.toLowerCase().trim()
+        buscarPokemons(termo)
+    })
+}
+
 function buscarPokemons(termo) {
     const cards = document.querySelectorAll('.card')
     
@@ -229,15 +241,5 @@ function buscarPokemons(termo) {
         } else {
             card.style.display = 'none'
         }
-    })
-}
-
-function inicializarBusca() {
-    const inputBusca = document.getElementById('input-busca')
-    if (!inputBusca) return
-
-    inputBusca.addEventListener('input', () => {
-        const termo = inputBusca.value.toLowerCase().trim()
-        buscarPokemons(termo)
     })
 }
