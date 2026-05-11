@@ -217,7 +217,7 @@ if (document.getElementById('principal')) {
 inicializarAnimacoes();
 
 
-function filtrarPokemons(termo) {
+function buscarPokemons(termo) {
     const cards = document.querySelectorAll('.card')
     
     cards.forEach(card => {
@@ -238,6 +238,6 @@ function inicializarBusca() {
 
     inputBusca.addEventListener('input', () => {
         const termo = inputBusca.value.toLowerCase().trim()
-        filtrarPokemons(termo)
+        buscarPokemons(termo)
     })
 }
