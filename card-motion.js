@@ -56,7 +56,7 @@ async function carregarPokemonsDoJSON() {
       const imagemAnimada = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${poke.id}.gif`;
 
       todasAsCartas += `
-        <div class="card" style="background-color: ${corFundo}">
+        <div class="card" style="background-color: ${corFundo}" data-id="${idFormatado}">
           <div class="card-topo">
             <p class="Nome-principal">${nomeCapitalizado}</p>
             <p>id ${idFormatado}</p>
@@ -71,7 +71,8 @@ async function carregarPokemonsDoJSON() {
     }
 
     container.innerHTML = todasAsCartas;
-    inicializarAnimacoes(); 
+    inicializarAnimacoes();
+    inicializarBusca()
 
   } catch (error) {
     console.error("Erro ao carregar o JSON ou a API:", error);
@@ -214,3 +215,29 @@ if (document.getElementById('principal')) {
 }
 // Se existirem cards fixos no HTML, ativa a animação neles
 inicializarAnimacoes();
+
+
+function filtrarPokemons(termo) {
+    const cards = document.querySelectorAll('.card')
+    
+    cards.forEach(card => {
+        const nome = card.querySelector('.Nome-principal').textContent.toLowerCase()
+        const id = card.dataset.id // você vai precisar adicionar isso nos cards
+        
+        if (nome.includes(termo) || id.includes(termo)) {
+            card.style.display = 'flex' // mostra
+        } else {
+            card.style.display = 'none' // esconde
+        }
+    })
+}
+
+function inicializarBusca() {
+    const inputBusca = document.getElementById('input-busca')
+    if (!inputBusca) return
+
+    inputBusca.addEventListener('input', () => {
+        const termo = inputBusca.value.toLowerCase().trim()
+        filtrarPokemons(termo)
+    })
+}

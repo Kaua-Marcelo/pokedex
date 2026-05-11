@@ -252,6 +252,16 @@ body{
     width: 500px;
 }
 
+.busca-poke input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: black;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 13px;
+    width: 100%;
+}
+
  .sort-id{
     margin: 10px;
     margin-left: 40px;
@@ -425,13 +435,6 @@ gap: 12px;
 .tipo-eletrico { background-color: #FFCC00; }
 .tipo-venenoso { background-color: #AA5599; }
 .tipo-normal { background-color: #AAAA99; }
-
-.lupa{
- position: absolute;
- font-size: 35px;
- bottom: 625px;
- right: 510px;
-}
 
 /* mensagem de erro */
 
