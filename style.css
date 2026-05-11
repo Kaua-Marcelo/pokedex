@@ -315,6 +315,7 @@ body{
 .card{
 margin: 20px;
 margin-left: 35px;
+cursor: pointer;
 
 overflow: hidden;
 border-radius: 30px;
