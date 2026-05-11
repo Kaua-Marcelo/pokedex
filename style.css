@@ -163,7 +163,7 @@ body{
 
 /* css login */
 
-.create {
+.create, .login-acc {
         text-decoration: none;
     color: blue;
 }
@@ -189,10 +189,11 @@ body{
     margin-bottom: 10px;
 }
 
-.create-account {
+.create-account, .login-account {
     margin-bottom: 20px;
     font-size: 15px;
 }
+
 
 .form-login {
     display: flex;
