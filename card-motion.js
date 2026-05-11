@@ -222,12 +222,12 @@ function filtrarPokemons(termo) {
     
     cards.forEach(card => {
         const nome = card.querySelector('.Nome-principal').textContent.toLowerCase()
-        const id = card.dataset.id // você vai precisar adicionar isso nos cards
+        const id = card.dataset.id
         
         if (nome.includes(termo) || id.includes(termo)) {
-            card.style.display = 'flex' // mostra
+            card.style.display = 'flex'
         } else {
-            card.style.display = 'none' // esconde
+            card.style.display = 'none'
         }
     })
 }
