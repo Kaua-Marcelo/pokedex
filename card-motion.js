@@ -64,7 +64,7 @@ async function carregarPokemonsDoJSON() {
           <img src="${imagemAnimada}" class="poke-gif">
           <div class="card-base">
             <div class="tipo ${classeCorTipo}">${tipoPrincipal}</div>
-            <div class="estrela">★</div>
+            <buttom class="estrela">★</buttom>
           </div>
         </div>
       `;
@@ -243,3 +243,4 @@ function buscarPokemons(termo) {
         }
     })
 }
+
