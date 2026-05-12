@@ -87,7 +87,7 @@ function inicializarAnimacoes() {
     card.addEventListener('mousemove', (e) => {
       card.classList.remove('reset'); 
       
-      // --- O PULO DO GATO PRA DESTRAVAR O 3D ---
+      // --- PRA DESTRAVAR O 3D ---
       // Isso desliga a animação de "entrada" do CSS para o JS poder girar o card livremente
       card.style.opacity = '1';
       card.style.animation = 'none';
