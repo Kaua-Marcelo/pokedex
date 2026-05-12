@@ -32,6 +32,13 @@ const coresCards = {
   "fairy": "#fbcfe8"
 };
 
+const itensPorPagina = 20;
+let resultadosAPI = [];
+let paginaAtual = 0;
+let estaCarregando = false;
+let chegouNoFim = false;
+const cacheDetalhes = new Map();
+
 // --- FUNÇÃO 1: CARREGAR TUDO (USADA NA INDEX) ---
 async function carregarPokemonsDoJSON() {
   const container = document.getElementById('principal');
@@ -39,23 +46,49 @@ async function carregarPokemonsDoJSON() {
 
   try {
     const resposta = await axios.get('./pokemons.json');
-    const resultadosAPI = resposta.data.results;
+    resultadosAPI = resposta.data.results;
+    paginaAtual = 0;
+    chegouNoFim = false;
 
-    let todasAsCartas = "";
+    container.innerHTML = '';
+    await carregarProximaPagina();
+    inicializarBusca();
+  } catch (error) {
+    console.error("Erro ao carregar o JSON ou a API:", error);
+  }
+}
 
-    for (const p of resultadosAPI) {
-      const detalhe = await axios.get(p.url);
+async function carregarProximaPagina() {
+  const container = document.getElementById('principal');
+  if (!container || estaCarregando || chegouNoFim) return;
+
+  const start = paginaAtual * itensPorPagina;
+  const end = start + itensPorPagina;
+  const batch = resultadosAPI.slice(start, end);
+
+  if (batch.length === 0) {
+    chegouNoFim = true;
+    return;
+  }
+
+  estaCarregando = true;
+
+  try {
+    const respostas = await Promise.all(batch.map(p => axios.get(p.url)));
+    let htmlLote = "";
+
+    for (let i = 0; i < respostas.length; i++) {
+      const detalhe = respostas[i];
       const poke = detalhe.data;
-
+      cacheDetalhes.set(batch[i].url, poke);
       const tipoPrincipal = poke.types[0].type.name;
-      const corFundo = coresCards[tipoPrincipal] || "#ffffff"; 
+      const corFundo = coresCards[tipoPrincipal] || "#ffffff";
       const classeCorTipo = coresDosTipos[tipoPrincipal] || "tipo-normal";
-
       const idFormatado = String(poke.id).padStart(3, '0');
       const nomeCapitalizado = poke.name.charAt(0).toUpperCase() + poke.name.slice(1);
       const imagemAnimada = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${poke.id}.gif`;
 
-      todasAsCartas += `
+      htmlLote += `
         <div class="card" style="background-color: ${corFundo}" data-id="${idFormatado}">
           <div class="card-topo">
             <p class="Nome-principal">${nomeCapitalizado}</p>
@@ -70,13 +103,77 @@ async function carregarPokemonsDoJSON() {
       `;
     }
 
-    container.innerHTML = todasAsCartas;
-    inicializarAnimacoes();
-    inicializarBusca()
+    container.innerHTML += htmlLote;
+    paginaAtual += 1;
+    if (end >= resultadosAPI.length) {
+      chegouNoFim = true;
+    }
 
+    inicializarAnimacoes();
   } catch (error) {
-    console.error("Erro ao carregar o JSON ou a API:", error);
+    console.error("Erro ao carregar o lote de pokémons:", error);
+  } finally {
+    estaCarregando = false;
   }
+}
+
+function estaBuscando() {
+  const inputBusca = document.getElementById('input-busca');
+  return inputBusca && inputBusca.value.trim().length > 0;
+}
+
+function onScrollCarregarMais() {
+  if (estaCarregando || chegouNoFim || estaBuscando()) return;
+
+  const distanciaRestante = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
+  if (distanciaRestante < 400) {
+    carregarProximaPagina();
+  }
+}
+
+async function obterDetalhesPokemon(pokemon) {
+  if (cacheDetalhes.has(pokemon.url)) {
+    return cacheDetalhes.get(pokemon.url);
+  }
+  const resposta = await axios.get(pokemon.url);
+  cacheDetalhes.set(pokemon.url, resposta.data);
+  return resposta.data;
+}
+
+function criarHTMLCard(poke) {
+  const tipoPrincipal = poke.types[0].type.name;
+  const corFundo = coresCards[tipoPrincipal] || "#ffffff";
+  const classeCorTipo = coresDosTipos[tipoPrincipal] || "tipo-normal";
+  const idFormatado = String(poke.id).padStart(3, '0');
+  const nomeCapitalizado = poke.name.charAt(0).toUpperCase() + poke.name.slice(1);
+  const imagemAnimada = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${poke.id}.gif`;
+
+  return `
+    <div class="card" style="background-color: ${corFundo}" data-id="${idFormatado}">
+      <div class="card-topo">
+        <p class="Nome-principal">${nomeCapitalizado}</p>
+        <p>id ${idFormatado}</p>
+      </div>
+      <img src="${imagemAnimada}" class="poke-gif">
+      <div class="card-base">
+        <div class="tipo ${classeCorTipo}">${tipoPrincipal}</div>
+        <buttom class="estrela">★</buttom>
+      </div>
+    </div>
+  `;
+}
+
+function renderizarPokemonsNoContainer(pokemons) {
+  const container = document.getElementById('principal');
+  if (!container) return;
+  container.innerHTML = pokemons.map(criarHTMLCard).join('');
+  inicializarAnimacoes();
+}
+
+async function renderizarPokemonsCarregados() {
+  const carregados = resultadosAPI.slice(0, paginaAtual * itensPorPagina);
+  const detalhes = await Promise.all(carregados.map(obterDetalhesPokemon));
+  renderizarPokemonsNoContainer(detalhes);
 }
 
 // --- FUNÇÃO 2: ANIMAÇÕES 3D E FOIL ---
@@ -212,6 +309,7 @@ function escolherPokemon(nome, id, imagem, tipo) {
 // Tem que ter isso no final do arquivo!
 if (document.getElementById('principal')) {
     carregarPokemonsDoJSON();
+    window.addEventListener('scroll', onScrollCarregarMais);
 }
 // Se existirem cards fixos no HTML, ativa a animação neles
 inicializarAnimacoes();
@@ -223,24 +321,34 @@ function inicializarBusca() {
     const inputBusca = document.getElementById('input-busca')
     if (!inputBusca) return
 
-    inputBusca.addEventListener('input', () => {
+    inputBusca.addEventListener('input', async () => {
         const termo = inputBusca.value.toLowerCase().trim()
-        buscarPokemons(termo)
+        await buscarPokemons(termo)
     })
 }
 
-function buscarPokemons(termo) {
-    const cards = document.querySelectorAll('.card')
-    
-    cards.forEach(card => {
-        const nome = card.querySelector('.Nome-principal').textContent.toLowerCase()
-        const id = card.dataset.id
-        
-        if (nome.includes(termo) || id.includes(termo)) {
-            card.style.display = 'flex'
-        } else {
-            card.style.display = 'none'
-        }
-    })
+async function buscarPokemons(termo) {
+    const container = document.getElementById('principal');
+    if (!container) return;
+
+    const texto = termo.toLowerCase().trim();
+    if (!texto) {
+        await renderizarPokemonsCarregados();
+        return;
+    }
+
+    const resultados = resultadosAPI.filter(pokemon => {
+        const nome = pokemon.name.toLowerCase();
+        const idPokemon = String(pokemon.url.match(/\/(\d+)\/$/)[1] || "");
+        return nome.includes(texto) || idPokemon.includes(texto);
+    });
+
+    if (resultados.length === 0) {
+        container.innerHTML = '<p>Nenhum Pokémon encontrado.</p>';
+        return;
+    }
+
+    const detalhes = await Promise.all(resultados.map(obterDetalhesPokemon));
+    renderizarPokemonsNoContainer(detalhes);
 }
 
