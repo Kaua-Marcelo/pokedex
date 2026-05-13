@@ -53,6 +53,8 @@ async function carregarPokemonsDoJSON() {
     container.innerHTML = '';
     await carregarProximaPagina();
     inicializarBusca();
+    inicializarSort();       // ← ativa o sort depois que a lista carrega
+    inicializarFiltroTipo(); // ← ativa o filtro de tipo também
   } catch (error) {
     console.error("Erro ao carregar o JSON ou a API:", error);
   }
@@ -97,7 +99,7 @@ async function carregarProximaPagina() {
           <img src="${imagemAnimada}" class="poke-gif">
           <div class="card-base">
             <div class="tipo ${classeCorTipo}">${tipoPrincipal}</div>
-            <button class="estrela">★</button>
+            <buttom class="estrela">★</buttom>
           </div>
         </div>
       `;
@@ -157,7 +159,7 @@ function criarHTMLCard(poke) {
       <img src="${imagemAnimada}" class="poke-gif">
       <div class="card-base">
         <div class="tipo ${classeCorTipo}">${tipoPrincipal}</div>
-        <button class="estrela">★</button>
+        <buttom class="estrela">★</buttom>
       </div>
     </div>
   `;
@@ -176,6 +178,58 @@ async function renderizarPokemonsCarregados() {
   renderizarPokemonsNoContainer(detalhes);
 }
 
+// --- SORT ---
+// Pega todos os pokémons que já foram carregados no cache,
+// ordena conforme a opção escolhida e re-renderiza.
+let tipoAtivo = 'all';
+let sortAtivo = 'id-asc';
+
+function inicializarSort() {
+  const selectSort = document.getElementById('select-sort');
+  if (!selectSort) return;
+
+  selectSort.addEventListener('change', async () => {
+    sortAtivo = selectSort.value;
+    await aplicarFiltroESort();
+  });
+}
+
+function inicializarFiltroTipo() {
+  const selectTipo = document.getElementById('filtro-tipo');
+  if (!selectTipo) return;
+
+  selectTipo.addEventListener('change', async () => {
+    tipoAtivo = selectTipo.value;
+    await aplicarFiltroESort();
+  });
+}
+
+async function aplicarFiltroESort() {
+  const carregados = resultadosAPI.slice(0, paginaAtual * itensPorPagina);
+  const detalhes = await Promise.all(carregados.map(obterDetalhesPokemon));
+
+  let resultado = tipoAtivo === 'all'
+    ? [...detalhes]
+    : detalhes.filter(poke => poke.types.some(t => t.type.name === tipoAtivo));
+
+  if (resultado.length === 0) {
+    document.getElementById('principal').innerHTML = '<p>Nenhum Pokémon encontrado para esse tipo.</p>';
+    return;
+  }
+
+  if (sortAtivo === 'id-asc') {
+    resultado.sort((a, b) => a.id - b.id);
+  } else if (sortAtivo === 'id-desc') {
+    resultado.sort((a, b) => b.id - a.id);
+  } else if (sortAtivo === 'nome-az') {
+    resultado.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortAtivo === 'nome-za') {
+    resultado.sort((a, b) => b.name.localeCompare(a.name));
+  }
+
+  renderizarPokemonsNoContainer(resultado);
+}
+
 // --- FUNÇÃO 2: ANIMAÇÕES 3D E FOIL ---
 function inicializarAnimacoes() {
   const cardsCriados = document.querySelectorAll('.card');
@@ -183,12 +237,8 @@ function inicializarAnimacoes() {
   cardsCriados.forEach(card => {
     card.addEventListener('mousemove', (e) => {
       card.classList.remove('reset'); 
-      
-      // --- PRA DESTRAVAR O 3D ---
-      // Isso desliga a animação de "entrada" do CSS para o JS poder girar o card livremente
       card.style.opacity = '1';
       card.style.animation = 'none';
-     
       
       const rect = card.getBoundingClientRect();
       const mouseX = e.clientX - rect.left; 
@@ -207,33 +257,18 @@ function inicializarAnimacoes() {
       
       card.style.setProperty('--luz-x', `${percentX}%`);
       card.style.setProperty('--luz-y', `${percentY}%`);
-      
       card.style.setProperty('--foil-x', `${percentX}%`);
       card.style.setProperty('--foil-y', `${percentY}%`);
     });
 
     card.addEventListener('mouseleave', () => {
       card.classList.add('reset');
-      // Quando o mouse sai, ele volta pro estado normal perfeitamente
       card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-      
       card.style.setProperty('--luz-x', `50%`);
       card.style.setProperty('--luz-y', `50%`);
       card.style.setProperty('--foil-x', `50%`);
       card.style.setProperty('--foil-y', `50%`);
     });
-
-     const botaoEstrela = card.querySelector('.estrela');
-if (botaoEstrela) {
-  botaoEstrela.addEventListener('click', function () {
-    if (botaoEstrela.style.color == 'gold') {
-      botaoEstrela.style.color = '';
-    } else {
-      botaoEstrela.style.color = 'gold';
-    }
-  });
-}
-
   });
 }
 
@@ -244,13 +279,11 @@ async function mostrarEscolhaInicial() {
     
     if(!tela || !container) return;
 
-    // 1. Primeiro faz o fundo aparecer suavemente
     tela.classList.add('ativo');
 
     const iniciaisIds = [1, 4, 7];
     let htmlIniciais = "";
 
-    // 2. Busca os dados
     for (let i = 0; i < iniciaisIds.length; i++) {
         const id = iniciaisIds[i];
         const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
@@ -262,7 +295,6 @@ async function mostrarEscolhaInicial() {
         const nome = poke.name.charAt(0).toUpperCase() + poke.name.slice(1);
         const imagem = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`;
 
-        // Note o animation-delay para eles subirem um depois do outro
         htmlIniciais += `
             <div class="card card-inicial-animado" 
                  style="background-color: ${corFundo}; animation-delay: ${0.4 + (i * 0.2)}s" 
@@ -280,55 +312,47 @@ async function mostrarEscolhaInicial() {
         `;
     }
 
-    // 3. Injeta o HTML
     container.innerHTML = htmlIniciais;
 
-    // 4. O segredo para o 3D funcionar em cards novos:
-    // Esperamos um tempinho (milissegundos) para o navegador renderizar tudo
     setTimeout(() => {
         inicializarAnimacoes();
     }, 500); 
 }
+
 // --- FUNÇÃO 4: SALVAR ESCOLHA ---
 function escolherPokemon(nome, id, imagem, tipo) {
-    console.log("1. Clicou no Pokémon:", nome); // Rastreador 1
+    console.log("1. Clicou no Pokémon:", nome);
 
-    // Salva no localStorage
     const inicial = [{ id, nome, imagem, tipo }];
     localStorage.setItem("meusFavoritos", JSON.stringify(inicial));
-    console.log("2. Salvo no LocalStorage com sucesso!"); // Rastreador 2
+    console.log("2. Salvo no LocalStorage com sucesso!");
 
     const caixaMensagem = document.getElementById('mensagem-sucesso');
     const textoMensagem = document.getElementById('texto-mensagem');
 
     if (caixaMensagem && textoMensagem) {
-        console.log("3. Encontrou o HTML da mensagem. Subindo a caixa!"); // Rastreador 3
+        console.log("3. Encontrou o HTML da mensagem. Subindo a caixa!");
         
         textoMensagem.innerHTML = `Ótima escolha!<br><span style="color: #fdf17a;">${nome}</span> agora é seu parceiro.`;
         caixaMensagem.classList.add('mostrar');
 
         setTimeout(() => {
-            console.log("4. Fim dos 3 segundos, indo para o login..."); // Rastreador 4
+            console.log("4. Fim dos 3 segundos, indo para o login...");
             window.location.href = "login.html";
         }, 3000);
     } else {
-        // Se der erro, ele vai te avisar direto na tela em vez de pular de página
         console.error("ERRO: Não achei as divs 'mensagem-sucesso' e 'texto-mensagem' no HTML!");
         alert("Erro: HTML da mensagem não encontrado. Olhe o F12!");
     }
 }
 
-// Tem que ter isso no final do arquivo!
 if (document.getElementById('principal')) {
     carregarPokemonsDoJSON();
     window.addEventListener('scroll', onScrollCarregarMais);
 }
-// Se existirem cards fixos no HTML, ativa a animação neles
 inicializarAnimacoes();
 
-
-// Função de busca, que é ativada no index.html quando o usuário digita algo no input
-
+// --- BUSCA ---
 function inicializarBusca() {
     const inputBusca = document.getElementById('input-busca')
     if (!inputBusca) return
@@ -363,4 +387,3 @@ async function buscarPokemons(termo) {
     const detalhes = await Promise.all(resultados.map(obterDetalhesPokemon));
     renderizarPokemonsNoContainer(detalhes);
 }
-
