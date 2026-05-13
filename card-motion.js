@@ -224,13 +224,16 @@ function inicializarAnimacoes() {
     });
 
      const botaoEstrela = card.querySelector('.estrela');
-    if (botaoEstrela) {
-      botaoEstrela.addEventListener('click', function () {
-        botaoEstrela.style.color = 'gold';
-      });
+if (botaoEstrela) {
+  botaoEstrela.addEventListener('click', function () {
+    if (botaoEstrela.style.color == 'gold') {
+      botaoEstrela.style.color = '';
+    } else {
+      botaoEstrela.style.color = 'gold';
     }
+  });
+}
 
-   
   });
 }
 
