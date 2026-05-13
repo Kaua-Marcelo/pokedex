@@ -97,7 +97,7 @@ async function carregarProximaPagina() {
           <img src="${imagemAnimada}" class="poke-gif">
           <div class="card-base">
             <div class="tipo ${classeCorTipo}">${tipoPrincipal}</div>
-            <buttom class="estrela">★</buttom>
+            <button class="estrela">★</button>
           </div>
         </div>
       `;
@@ -157,7 +157,7 @@ function criarHTMLCard(poke) {
       <img src="${imagemAnimada}" class="poke-gif">
       <div class="card-base">
         <div class="tipo ${classeCorTipo}">${tipoPrincipal}</div>
-        <buttom class="estrela">★</buttom>
+        <button class="estrela">★</button>
       </div>
     </div>
   `;
@@ -222,6 +222,15 @@ function inicializarAnimacoes() {
       card.style.setProperty('--foil-x', `50%`);
       card.style.setProperty('--foil-y', `50%`);
     });
+
+     const botaoEstrela = card.querySelector('.estrela');
+    if (botaoEstrela) {
+      botaoEstrela.addEventListener('click', function () {
+        botaoEstrela.style.color = 'gold';
+      });
+    }
+
+   
   });
 }
 

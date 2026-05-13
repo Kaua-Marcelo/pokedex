@@ -427,8 +427,12 @@ gap: 12px;
 /* A Estrela */
 .estrela {
   font-size: 30px;
-  color: rgb(82, 82, 82);
+  color: #525252;
   margin: 0;
+  background-color: transparent; 
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s; 
 }
 
 /* As Cores dos Tipos */
