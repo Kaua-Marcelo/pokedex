@@ -1,4 +1,4 @@
-const coresDosTipos = {
+var coresDosTipos = {
   "fire": "tipo-fogo",
   "water": "tipo-agua",
   "grass": "tipo-planta",
@@ -15,7 +15,7 @@ const coresDosTipos = {
   "fairy": "tipo-fada" 
 };
 
-const coresCards = {
+var coresCards = {
   "fire": "#ffcb9e",
   "water": "#9dbdf5",
   "grass": "#a3e0a1",
@@ -112,6 +112,7 @@ async function carregarProximaPagina() {
     }
 
     inicializarAnimacoes();
+    inicializarFavoritos();
   } catch (error) {
     console.error("Erro ao carregar o lote de pokémons:", error);
   } finally {
@@ -130,6 +131,7 @@ function onScrollCarregarMais() {
   const distanciaRestante = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
   if (distanciaRestante < 400) {
     carregarProximaPagina();
+    
   }
 }
 
@@ -170,6 +172,7 @@ function renderizarPokemonsNoContainer(pokemons) {
   if (!container) return;
   container.innerHTML = pokemons.map(criarHTMLCard).join('');
   inicializarAnimacoes();
+  inicializarFavoritos();
 }
 
 async function renderizarPokemonsCarregados() {
@@ -316,6 +319,7 @@ async function mostrarEscolhaInicial() {
 
     setTimeout(() => {
         inicializarAnimacoes();
+       
     }, 500); 
 }
 
@@ -351,6 +355,7 @@ if (document.getElementById('principal')) {
     window.addEventListener('scroll', onScrollCarregarMais);
 }
 inicializarAnimacoes();
+inicializarFavoritos();
 
 // --- BUSCA ---
 function inicializarBusca() {
