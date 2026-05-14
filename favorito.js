@@ -49,7 +49,6 @@ var coresCards = {
     const jaFavoritado = favoritos.some((p) => p.id === id);
     if (jaFavoritado) botaoEstrela.style.color = "gold";
 
-    // Remove eventos antigos clonando o botão
     botaoEstrela.replaceWith(botaoEstrela.cloneNode(true));
     const novoBotao = card.querySelector(".estrela");
 

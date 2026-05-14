@@ -314,7 +314,7 @@ async function mostrarEscolhaInicial() {
 
     for (let i = 0; i < iniciaisIds.length; i++) {
         const id = iniciaisIds[i];
-        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${String(id)}`);
         const poke = res.data;
 
         const tipo = poke.types[0].type.name;
@@ -351,8 +351,8 @@ async function mostrarEscolhaInicial() {
 // --- FUNÇÃO 4: SALVAR ESCOLHA ---
 function escolherPokemon(nome, id, imagem, tipo) {
     console.log("1. Clicou no Pokémon:", nome);
-
-    const inicial = [{ id, nome, imagem, tipo, cor: coresCards[tipo] || '#ffffff' }];
+    const idFormatado = String(id).padStart(3, '0');
+    const inicial = [{ id: idFormatado, nome, imagem, tipo, cor: coresCards[tipo] || '#ffffff' }];
     localStorage.setItem("meusFavoritos", JSON.stringify(inicial));
     console.log("2. Salvo no LocalStorage com sucesso!");
 
