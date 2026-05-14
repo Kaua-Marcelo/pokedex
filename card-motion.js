@@ -120,18 +120,29 @@ async function carregarProximaPagina() {
   }
 }
 
-function estaBuscando() {
+function obterTermoBusca() {
   const inputBusca = document.getElementById('input-busca');
-  return inputBusca && inputBusca.value.trim().length > 0;
+  return inputBusca ? inputBusca.value.toLowerCase().trim() : '';
+}
+
+function estaBuscando() {
+  return obterTermoBusca().length > 0;
+}
+
+function temFiltroAtivo() {
+  return tipoAtivo !== 'all';
+}
+
+function temSortPersonalizado() {
+  return sortAtivo !== 'id-asc';
 }
 
 function onScrollCarregarMais() {
-  if (estaCarregando || chegouNoFim || estaBuscando()) return;
+  if (estaCarregando || chegouNoFim || estaBuscando() || temFiltroAtivo() || temSortPersonalizado()) return;
 
   const distanciaRestante = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
   if (distanciaRestante < 400) {
     carregarProximaPagina();
-    
   }
 }
 
@@ -208,17 +219,31 @@ function inicializarFiltroTipo() {
 }
 
 async function aplicarFiltroESort() {
-  const carregados = resultadosAPI.slice(0, paginaAtual * itensPorPagina);
-  const detalhes = await Promise.all(carregados.map(obterDetalhesPokemon));
+  const termo = obterTermoBusca();
+  if (termo) {
+    await buscarPokemons(termo);
+    return;
+  }
 
-  let resultado = tipoAtivo === 'all'
-    ? [...detalhes]
-    : detalhes.filter(poke => poke.types.some(t => t.type.name === tipoAtivo));
+  if (!temFiltroAtivo() && !temSortPersonalizado()) {
+    await renderizarPokemonsCarregados();
+    return;
+  }
 
+  const detalhes = await Promise.all(resultadosAPI.map(obterDetalhesPokemon));
+  const resultado = aplicarFiltroESortNosDetalhes(detalhes);
   if (resultado.length === 0) {
     document.getElementById('principal').innerHTML = '<p>Nenhum Pokémon encontrado para esse tipo.</p>';
     return;
   }
+
+  renderizarPokemonsNoContainer(resultado);
+}
+
+function aplicarFiltroESortNosDetalhes(detalhes) {
+  let resultado = tipoAtivo === 'all'
+    ? [...detalhes]
+    : detalhes.filter(poke => poke.types.some(t => t.type.name === tipoAtivo));
 
   if (sortAtivo === 'id-asc') {
     resultado.sort((a, b) => a.id - b.id);
@@ -230,7 +255,7 @@ async function aplicarFiltroESort() {
     resultado.sort((a, b) => b.name.localeCompare(a.name));
   }
 
-  renderizarPokemonsNoContainer(resultado);
+  return resultado;
 }
 
 // --- FUNÇÃO 2: ANIMAÇÕES 3D E FOIL ---
@@ -369,12 +394,12 @@ function inicializarBusca() {
 }
 
 async function buscarPokemons(termo) {
-    const container = document.getElementById(' principal');
+    const container = document.getElementById('principal');
     if (!container) return;
 
     const texto = termo.toLowerCase().trim();
     if (!texto) {
-        await renderizarPokemonsCarregados();
+        await aplicarFiltroESort();
         return;
     }
 
@@ -390,5 +415,6 @@ async function buscarPokemons(termo) {
     }
 
     const detalhes = await Promise.all(resultados.map(obterDetalhesPokemon));
-    renderizarPokemonsNoContainer(detalhes);
+    const resultadoFinal = aplicarFiltroESortNosDetalhes(detalhes);
+    renderizarPokemonsNoContainer(resultadoFinal);
 }
