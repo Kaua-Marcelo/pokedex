@@ -327,7 +327,7 @@ async function mostrarEscolhaInicial() {
 function escolherPokemon(nome, id, imagem, tipo) {
     console.log("1. Clicou no Pokémon:", nome);
 
-    const inicial = [{ id, nome, imagem, tipo }];
+    const inicial = [{ id, nome, imagem, tipo, cor: coresCards[tipo] || '#ffffff' }];
     localStorage.setItem("meusFavoritos", JSON.stringify(inicial));
     console.log("2. Salvo no LocalStorage com sucesso!");
 
@@ -369,7 +369,7 @@ function inicializarBusca() {
 }
 
 async function buscarPokemons(termo) {
-    const container = document.getElementById('principal');
+    const container = document.getElementById(' principal');
     if (!container) return;
 
     const texto = termo.toLowerCase().trim();
