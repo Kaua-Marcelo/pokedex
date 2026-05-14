@@ -37,7 +37,13 @@ body{
     font-size: 45px;
     color: black;
     text-decoration: none;
+    background: none;
+    border: none;
 }   
+
+.btn-voltar:hover {
+    cursor: pointer;
+}
 
 .header-left {
     display: flex;

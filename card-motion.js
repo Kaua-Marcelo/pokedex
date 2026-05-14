@@ -418,3 +418,7 @@ async function buscarPokemons(termo) {
     const resultadoFinal = aplicarFiltroESortNosDetalhes(detalhes);
     renderizarPokemonsNoContainer(resultadoFinal);
 }
+
+document.querySelector(".btn-voltar").addEventListener("click", function() {
+    history.back(-1);
+});
