@@ -34,49 +34,52 @@ var coresCards = {
 };
 
   function inicializarFavoritos() {
-    const cards = document.querySelectorAll(".card");
+  const cards = document.querySelectorAll(".card");
 
-    cards.forEach((card) => {
-      const botaoEstrela = card.querySelector(".estrela");
-      if (!botaoEstrela) return;
+  cards.forEach((card) => {
+    const botaoEstrela = card.querySelector(".estrela");
+    if (!botaoEstrela) return;
 
-      const nome = card.querySelector(".Nome-principal")?.textContent;
-      const id = card.getAttribute("data-id");
-      const imagem = card.querySelector(".poke-gif").src;
-      const tipo = card.querySelector(".tipo")?.textContent.trim();
+    const nome = card.querySelector(".Nome-principal")?.textContent;
+    const id = card.getAttribute("data-id");
+    const imagem = card.querySelector(".poke-gif").src;
+    const tipo = card.querySelector(".tipo")?.textContent.trim();
 
-      const favoritos = JSON.parse(localStorage.getItem("meusFavoritos")) || [];
-      const jaFavoritado = favoritos.some((p) => p.id === id);
-      if (jaFavoritado) botaoEstrela.style.color = "gold";
+    const favoritos = JSON.parse(localStorage.getItem("meusFavoritos")) || [];
+    const jaFavoritado = favoritos.some((p) => p.id === id);
+    if (jaFavoritado) botaoEstrela.style.color = "gold";
 
-      botaoEstrela.addEventListener("click", function () {
-        let favoritos = JSON.parse(localStorage.getItem("meusFavoritos")) || [];
+    // Remove eventos antigos clonando o botão
+    botaoEstrela.replaceWith(botaoEstrela.cloneNode(true));
+    const novoBotao = card.querySelector(".estrela");
 
-        if (botaoEstrela.style.color === "gold") {
-          botaoEstrela.style.color = "";
-          favoritos = favoritos.filter((p) => String(p.id) !== String(id));
-          if (document.getElementById("favoritos")) {
-            card.remove();
-          }
-          localStorage.setItem("meusFavoritos", JSON.stringify (favoritos));
-        } else {
-          const jaExiste = favoritos.some((p) => p.nome === nome);
-          if (!jaExiste) {
-            botaoEstrela.style.color = "gold";
-            favoritos.push({
-              id,
-              nome,
-              imagem,
-              tipo,
-              cor: coresCards[tipo] || "#ffffff",
-            });
-          }
+    novoBotao.addEventListener("click", function () {
+      let favoritos = JSON.parse(localStorage.getItem("meusFavoritos")) || [];
+
+      if (novoBotao.style.color === "gold") {
+        novoBotao.style.color = "";
+        favoritos = favoritos.filter((p) => p.id !== id);
+        if (document.getElementById("favoritos")) {
+          card.remove();
         }
+      } else {
+        const jaExiste = favoritos.some((p) => p.nome === nome);
+        if (!jaExiste) {
+          novoBotao.style.color = "gold";
+          favoritos.push({
+            id,
+            nome,
+            imagem,
+            tipo,
+            cor: coresCards[tipo] || "#ffffff",
+          });
+        }
+      }
 
-        localStorage.setItem("meusFavoritos", JSON.stringify(favoritos));
-      });
+      localStorage.setItem("meusFavoritos", JSON.stringify(favoritos));
     });
-  }
+  });
+}
 
 function exibirFavoritos() {
   const container = document.getElementById("favoritos");
