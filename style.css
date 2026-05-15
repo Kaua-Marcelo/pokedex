@@ -670,6 +670,10 @@ gap: 12px;
   background-color: #EE99AC !important; 
 }
 
+.tipo-voador{
+    background-color: #9985d5 !important;
+}
+
 .poke-gif {
   height: 110px !important; /* Tamanho ideal para GIFs de Gen 5 */
   width: auto !important;
@@ -783,4 +787,10 @@ gap: 12px;
 .mensagem-sucesso.mostrar {
     bottom: 50px; /* Sobe para ficar visível */
     opacity: 1;
+}
+.tipos {
+  display: flex;
+  flex-direction: column;  
+  gap: 4px; 
+  align-items: flex-start;
 }

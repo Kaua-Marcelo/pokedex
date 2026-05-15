@@ -12,7 +12,8 @@ var coresDosTipos = {
   "ice": "tipo-gelo",
   "dragon": "tipo-dragao",
   "bug": "tipo-inseto",
-  "fairy": "tipo-fada" 
+  "fairy": "tipo-fada", 
+  "flying": "tipo-voador"
 };
 
 var coresCards = {
@@ -29,7 +30,8 @@ var coresCards = {
   "ice": "#afeeee",
   "dragon": "#a78bfa",
   "bug": "#c1d063",
-  "fairy": "#fbcfe8"
+  "fairy": "#fbcfe8",
+  "flying": "#9985d5"
 };
 
 const itensPorPagina = 20;
@@ -91,18 +93,20 @@ async function carregarProximaPagina() {
       const imagemAnimada = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${poke.id}.gif`;
 
       htmlLote += `
-        <div class="card" style="background-color: ${corFundo}" data-id="${idFormatado}">
-          <div class="card-topo">
-            <p class="Nome-principal">${nomeCapitalizado}</p>
-            <p>id ${idFormatado}</p>
-          </div>
-          <img src="${imagemAnimada}" class="poke-gif">
-          <div class="card-base">
-            <div class="tipo ${classeCorTipo}">${tipoPrincipal}</div>
-            <buttom class="estrela">★</buttom>
-          </div>
+      <div class="card" style="background-color: ${corFundo}" data-id="${idFormatado}">
+        <div class="card-topo">
+          <p class="Nome-principal">${nomeCapitalizado}</p>
+          <p>id ${idFormatado}</p>
         </div>
-      `;
+        <img src="${imagemAnimada}" class="poke-gif">
+        <div class="card-base">
+          <div class="tipos">
+            ${poke.types.map(t => `<div class="tipo ${coresDosTipos[t.type.name] || 'tipo-normal'}">${t.type.name}</div>`).join('')}
+          </div>
+          <button class="estrela">★</button>
+        </div>
+      </div>
+    `;
     }
 
     container.innerHTML += htmlLote;
@@ -158,10 +162,15 @@ async function obterDetalhesPokemon(pokemon) {
 function criarHTMLCard(poke) {
   const tipoPrincipal = poke.types[0].type.name;
   const corFundo = coresCards[tipoPrincipal] || "#ffffff";
-  const classeCorTipo = coresDosTipos[tipoPrincipal] || "tipo-normal";
   const idFormatado = String(poke.id).padStart(3, '0');
   const nomeCapitalizado = poke.name.charAt(0).toUpperCase() + poke.name.slice(1);
   const imagemAnimada = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${poke.id}.gif`;
+
+  // gera uma badge pra cada tipo
+  const tiposHTML = poke.types.map(t => {
+    const classe = coresDosTipos[t.type.name] || "tipo-normal";
+    return `<div class="tipo ${classe}">${t.type.name}</div>`;
+  }).join('');
 
   return `
     <div class="card" style="background-color: ${corFundo}" data-id="${idFormatado}">
@@ -171,8 +180,8 @@ function criarHTMLCard(poke) {
       </div>
       <img src="${imagemAnimada}" class="poke-gif">
       <div class="card-base">
-        <div class="tipo ${classeCorTipo}">${tipoPrincipal}</div>
-        <buttom class="estrela">★</buttom>
+        <div class="tipos">${tiposHTML}</div>
+        <button class="estrela">★</button>
       </div>
     </div>
   `;
