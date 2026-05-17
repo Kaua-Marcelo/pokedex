@@ -361,7 +361,7 @@ async function mostrarEscolhaInicial() {
 function escolherPokemon(nome, id, imagem, tipo) {
     console.log("1. Clicou no Pokémon:", nome);
     const idFormatado = String(id).padStart(3, '0');
-    const inicial = [{ id: idFormatado, nome, imagem, tipo, cor: coresCards[tipo] || '#ffffff' }];
+    const inicial = [{ id: idFormatado, nome, imagem, tipo, tipos: [tipo], cor: coresCards[tipo] || '#ffffff' }];
     localStorage.setItem("meusFavoritos", JSON.stringify(inicial));
     console.log("2. Salvo no LocalStorage com sucesso!");
 
@@ -376,7 +376,7 @@ function escolherPokemon(nome, id, imagem, tipo) {
 
         setTimeout(() => {
             console.log("4. Fim dos 3 segundos, indo para o login...");
-            window.location.href = "login.html";
+            window.location.href = "index.html";
         }, 3000);
     } else {
         console.error("ERRO: Não achei as divs 'mensagem-sucesso' e 'texto-mensagem' no HTML!");

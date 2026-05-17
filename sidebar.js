@@ -8,6 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.className = 'sidebar-overlay';
     document.body.appendChild(overlay);
   }
+
+  const currentPath = window.location.pathname.split('/').pop().toLowerCase() || 'index.html';
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href) return;
+    const linkPath = href.split('/').pop().toLowerCase();
+    if (linkPath === currentPath || (linkPath === 'index.html' && currentPath === '')) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
   
   // Toggle sidebar
   btnMenu.addEventListener('click', (e) => {
