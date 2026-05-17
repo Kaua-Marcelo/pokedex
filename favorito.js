@@ -33,7 +33,7 @@ var coresCards = {
   fairy: "#fbcfe8",
 };
 
-  function inicializarFavoritos() {
+ function inicializarFavoritos() {
   const cards = document.querySelectorAll(".card");
 
   cards.forEach((card) => {
@@ -43,7 +43,7 @@ var coresCards = {
     const nome = card.querySelector(".Nome-principal")?.textContent;
     const id = card.getAttribute("data-id");
     const imagem = card.querySelector(".poke-gif").src;
-    const tipo = card.querySelector(".tipo")?.textContent.trim();
+    const tipos = [...card.querySelectorAll(".tipo")].map(el => el.textContent.trim());
 
     const favoritos = JSON.parse(localStorage.getItem("meusFavoritos")) || [];
     const jaFavoritado = favoritos.some((p) => p.id === id);
@@ -69,8 +69,8 @@ var coresCards = {
             id,
             nome,
             imagem,
-            tipo,
-            cor: coresCards[tipo] || "#ffffff",
+            tipos,
+            cor: coresCards[tipos[0]] || "#ffffff",
           });
         }
       }
@@ -92,22 +92,26 @@ function exibirFavoritos() {
   }
 
   container.innerHTML = favoritos
-    .map(
-      (p) => `
-    <div class="card" data-id="${p.id}" style="background-color: ${p.cor}">
-      <div class="card-topo">
-        <p class="Nome-principal">${p.nome}</p>
-        <p>id ${p.id}</p>
-      </div>
-      <img src="${p.imagem}" class="poke-gif">
-      <div class="card-base">
-        <div class="tipo">${p.tipo}</div>
-        <button class="estrela" style="color: gold">★</button>
-      </div>
-    </div>
-  `,
-    )
-    .join("");
+    .map((p) => {
+      const tipos = Array.isArray(p.tipos) ? p.tipos : [p.tipos];
+      const tiposHTML = tipos.map(t =>
+        `<div class="tipo ${coresDosTipos[t] || 'tipo-normal'}">${t}</div>`
+      ).join('');
+
+      return `
+        <div class="card" data-id="${p.id}" style="background-color: ${p.cor}">
+          <div class="card-topo">
+            <p class="Nome-principal">${p.nome}</p>
+            <p>id ${p.id}</p>
+          </div>
+          <img src="${p.imagem}" class="poke-gif">
+          <div class="card-base">
+            <div class="tipos">${tiposHTML}</div>
+            <button class="estrela" style="color: gold">★</button>
+          </div>
+        </div>
+      `;
+    }).join("");
 }
 
 if (document.getElementById("favoritos")) {
