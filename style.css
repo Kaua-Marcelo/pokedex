@@ -75,6 +75,13 @@ body{
   justify-content: flex-end;
 }
 
+body.login #header-bar {
+    justify-content: center;
+    height: 70px;
+    padding: 10px 16px;
+    box-sizing: border-box;
+}
+
 #main-overview {
     display: flex;
     flex-direction: column;
