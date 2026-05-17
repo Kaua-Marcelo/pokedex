@@ -34,6 +34,44 @@
   margin: 0;
 }
 
+.sidebar-user-info {
+  padding: 20px 25px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.user-name {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.75rem;
+  margin: 0;
+  color: rgba(255,255,255,0.9);
+  word-break: break-word;
+}
+
+.btn-logout {
+  padding: 10px 15px;
+  background: rgba(255,255,255,0.2);
+  border: 2px solid rgba(255,255,255,0.5);
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-logout:hover {
+  background: rgba(255,61,87,0.8);
+  border-color: #ff3d57;
+  transform: scale(1.05);
+}
+
 .sidebar-menu {
   list-style: none;
   padding: 20px 0;
