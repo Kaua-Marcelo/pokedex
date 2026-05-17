@@ -1,7 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
   const sidebar = document.getElementById('sidebar');
   const btnMenu = document.getElementById('sidebarToggle');
+  const userNameDisplay = document.getElementById('userNameDisplay');
+  const btnLogout = document.getElementById('btnLogout');
   let overlay = document.querySelector('.sidebar-overlay');
+
+  const usuario = JSON.parse(localStorage.getItem('usuario'));
+  
+  if (!usuario) {
+    window.location.href = 'login.html';
+    return;
+  }
+  
+  if (userNameDisplay) {
+    userNameDisplay.innerHTML = `<i class="bi bi-person-circle"></i> ${usuario.user}`;
+  }
+  
+  if (btnLogout) {
+    btnLogout.addEventListener('click', () => {
+      alert('Logout realizado!');
+      window.location.href = 'login.html';
+    });
+  }
   
   if (!overlay) {
     overlay = document.createElement('div');

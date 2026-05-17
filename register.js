@@ -16,8 +16,8 @@ function limparErros() {
 botao.addEventListener('click', () => {
     limparErros()
 
-    const usuarioExistente = JSON.parse(localStorage.getItem("usuario"))
-    if (usuarioExistente && user.value === usuarioExistente.user) {
+    const contas = JSON.parse(localStorage.getItem("contas")) || []
+    if (contas.some(conta => conta.user === user.value)) {
         mostrarErro(user, "Este usuário já existe!")
         return
     }
@@ -46,7 +46,8 @@ botao.addEventListener('click', () => {
         user: user.value,
         senha: senha.value
     }
-    localStorage.setItem("usuario", JSON.stringify(usuario))
+    contas.push(usuario)
+    localStorage.setItem("contas", JSON.stringify(contas))
 
 
     limparFormularioDeRegistro();

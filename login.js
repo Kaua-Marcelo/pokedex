@@ -21,18 +21,22 @@ botao.addEventListener('click', () => {
         return
     }
 
-    const usuarioSalvo = JSON.parse(localStorage.getItem("usuario"))
+    const contas = JSON.parse(localStorage.getItem("contas")) || []
 
-    if (!usuarioSalvo) {
+    if (contas.length === 0) {
         alert("Nenhuma conta encontrada. Registre-se primeiro!")
         window.location.href = "register.html"
+        return
     }
 
-    if (user.value !== usuarioSalvo.user || senha.value !== usuarioSalvo.senha) {
+    const usuarioEncontrado = contas.find(conta => conta.user === user.value && conta.senha === senha.value)
+
+    if (!usuarioEncontrado) {
         mostrarErro(senha, "Usuário ou senha incorretos!")
         return
     }
 
+    localStorage.setItem("usuario", JSON.stringify(usuarioEncontrado))
     alert("Login realizado com sucesso!")
     window.location.href = "index.html"
 })
