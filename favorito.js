@@ -14,6 +14,7 @@ var coresDosTipos = {
   dragon: "tipo-dragao",
   bug: "tipo-inseto",
   fairy: "tipo-fada",
+  flying: "tipo-voador"
 };
 
 var coresCards = {
@@ -31,6 +32,7 @@ var coresCards = {
   dragon: "#a78bfa",
   bug: "#c1d063",
   fairy: "#fbcfe8",
+  flying: "#9985d5"
 };
 
  function inicializarFavoritos() {

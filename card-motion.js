@@ -55,8 +55,8 @@ async function carregarPokemonsDoJSON() {
     container.innerHTML = '';
     await carregarProximaPagina();
     inicializarBusca();
-    inicializarSort();       // ← ativa o sort depois que a lista carrega
-    inicializarFiltroTipo(); // ← ativa o filtro de tipo também
+    inicializarSort();
+    inicializarFiltroTipo();
   } catch (error) {
     console.error("Erro ao carregar o JSON ou a API:", error);
   }
@@ -166,7 +166,6 @@ function criarHTMLCard(poke) {
   const nomeCapitalizado = poke.name.charAt(0).toUpperCase() + poke.name.slice(1);
   const imagemAnimada = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${poke.id}.gif`;
 
-  // gera uma badge pra cada tipo
   const tiposHTML = poke.types.map(t => {
     const classe = coresDosTipos[t.type.name] || "tipo-normal";
     return `<div class="tipo ${classe}">${t.type.name}</div>`;
@@ -202,8 +201,6 @@ async function renderizarPokemonsCarregados() {
 }
 
 // --- SORT ---
-// Pega todos os pokémons que já foram carregados no cache,
-// ordena conforme a opção escolhida e re-renderiza.
 let tipoAtivo = 'all';
 let sortAtivo = 'id-asc';
 

@@ -1,106 +1,105 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Favorites</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="style.css">
+    <linkrel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"/>
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"/>
-    <link rel="stylesheet" href="sidebar.css">
-</head>
-<body class="fav">
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <img src="assets/PokeBall.png" alt="Pokéball" width="40" />
-      <h3>POKEDEX</h3>
-    </div>
-    
-    <ul class="sidebar-menu">
-      <li><a href="index.html" class="nav-link active" data-page="pokedex">
-        <i class="bi bi-house"></i> Home
-      </a></li>
-      <li><a href="fav.html" class="nav-link" data-page="favoritos">
-        <i class="bi bi-star-fill"></i> Favoritos
-      </a></li>
-      <li><a href="overview.html" class="nav-link" data-page="sobre">
-        <i class="bi bi-exclamation-circle"></i> Sobre
-      </a></li>
-    </ul>
-  </div>
+    <link rel="stylesheet" href="sidebar.css"/>
+  </head>
 
+  <body class="fav">
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="assets/PokeBall.png" alt="Pokéball" width="40"/>
+        <h3>POKEDEX</h3>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li>
+          <a href="index.html" class="nav-link active" data-page="pokedex">
+            <i class="bi bi-house"></i> Home
+          </a>
+        </li>
+        <li>
+          <a href="fav.html" class="nav-link" data-page="favoritos">
+            <i class="bi bi-star-fill"></i> Favoritos
+          </a>
+        </li>
+        <li>
+          <a href="overview.html" class="nav-link" data-page="sobre">
+            <i class="bi bi-exclamation-circle"></i> Sobre
+          </a>
+        </li>
+      </ul>
+    </div>
 
     <header id="header-bar">
       <div class="header-left">
         <a href="index.html">
           <img src="assets/PokeBall.png" alt="pokébola" width="70px" />
         </a>
-        <button class="btn-voltar"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="btn-voltar">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
       </div>
       <h1 class="header-title"><a href="index.html">POKEDEX</a></h1>
-      <button class="btn-menu" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+      <button class="btn-menu" id="sidebarToggle">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </header>
-        <h2>My Favorites</h2>
-        <div class="busca-poke">
-          <input type="text" id="input-busca" placeholder="Enter a name or id"> 
-        </div>
-        
+    <h2>My Favorites</h2>
+    <div class="busca-poke">
+      <input type="text" id="input-busca" placeholder="Enter a name or id" />
+    </div>
 
-        <div class="sort-id">
-          <label>Sort by:  </label>
-          <select>
-            
-            <option>ID (Ascending)</option>
-            <option>ID (Decreasing)</option>
-            <option>Name (A-Z)</option>
-            <option>Name (Z-A)</option>
-            <option>Weakness (A-Z)</option>
-            <option>Weakness (Z-A)</option>
-            <option>Category (A-Z)</option>
-            <option>Category (Z-A)</option>
-            <option>Type (A-Z)</option>
-            <option>Type (Z-A)</option>
+    <div class="sort-id">
+      <label>Sort by: </label>
+      <select>
+        <option>ID (Ascending)</option>
+        <option>ID (Decreasing)</option>
+        <option>Name (A-Z)</option>
+        <option>Name (Z-A)</option>
+        <option>Weakness (A-Z)</option>
+        <option>Weakness (Z-A)</option>
+        <option>Category (A-Z)</option>
+        <option>Category (Z-A)</option>
+        <option>Type (A-Z)</option>
+        <option>Type (Z-A)</option>
+      </select>
+    </div>
+    <div class="tipo-poke">
+      <label>Type:</label>
 
+      <select>
+        <option>ALL</option>
+        <option>Fire</option>
+        <option>Water</option>
+        <option>Grass</option>
+        <option>Poison</option>
+        <option>Fighting</option>
+        <option>Ground</option>
+        <option>Normal</option>
+        <option>Psychic</option>
+        <option>Bug</option>
+        <option>Electric</option>
+        <option>Fairy</option>
+        <option>Rock</option>
+        <option>Ghost</option>
+        <option>Ice</option>
+        <option>Dragon</option>
+        <option>Flying</option>
+      </select>
+    </div>
 
-          </select>
+    <div id="favoritos"></div>
 
-        </div>
-        <div class="tipo-poke">
-          <label>Type:</label>
-          
-          <select>
-           <option>ALL</option>
-           <option>Fire</option>
-           <option>Water</option>
-           <option>Grass</option>
-           <option>Poison</option>
-           <option>Fighting</option>
-           <option>Ground</option>
-           <option>Normal</option>
-           <option>Psychic</option>
-           <option>Bug</option>
-           <option>Electric</option>
-           <option>Fairy</option>
-           <option>Rock</option>
-           <option>Ghost</option>
-           <option>Ice</option>
-           <option>Dragon</option>
-           <option>Flying</option>
-
-          </select>
-
-        </div>
-
-        
-        <div id="favoritos">
-         
-        </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="favorito.js"></script>
-  <script src="card-motion.js"></script>
-  <script src="sidebar.js"></script>
-  
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="favorito.js"></script>
+    <script src="card-motion.js"></script>
+    <script src="sidebar.js"></script>
+  </body>
 </html>

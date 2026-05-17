@@ -49,14 +49,13 @@ botao.addEventListener('click', () => {
     localStorage.setItem("usuario", JSON.stringify(usuario))
 
 
-    limparFormularioDeRegistro(); // Função simples para sumir com o form
-    mostrarEscolhaInicial();      // Essa função está lá no card-motion.js
+    limparFormularioDeRegistro();
+    mostrarEscolhaInicial();
 });
 
 function limparFormularioDeRegistro() {
     const form = document.querySelector(".form-register");
     if(form) form.style.display = "none";
-    // Se tiver um h1 ou texto de "Crie sua conta", pode esconder também
     const titulo = document.querySelector("h1");
     if(titulo) titulo.textContent = "BEM-VINDO, TREINADOR!";
 }
