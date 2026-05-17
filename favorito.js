@@ -93,13 +93,20 @@ function exibirFavoritos() {
 
   container.innerHTML = favoritos
     .map((p) => {
-      const tipos = Array.isArray(p.tipos) ? p.tipos : [p.tipos];
+      const tipos = Array.isArray(p.tipos)
+        ? p.tipos
+        : p.tipos
+          ? [p.tipos]
+          : p.tipo
+            ? [p.tipo]
+            : [];
+      const cor = p.cor || coresCards[tipos[0]] || "#ffffff";
       const tiposHTML = tipos.map(t =>
         `<div class="tipo ${coresDosTipos[t] || 'tipo-normal'}">${t}</div>`
       ).join('');
 
       return `
-        <div class="card" data-id="${p.id}" style="background-color: ${p.cor}">
+        <div class="card" data-id="${p.id}" style="background-color: ${cor}">
           <div class="card-topo">
             <p class="Nome-principal">${p.nome}</p>
             <p>id ${p.id}</p>
