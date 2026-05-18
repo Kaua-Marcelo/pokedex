@@ -368,7 +368,7 @@ function escolherPokemon(nome, id, imagem, tipo) {
     if (caixaMensagem && textoMensagem) {
         console.log("3. Encontrou o HTML da mensagem. Subindo a caixa!");
         
-        textoMensagem.innerHTML = `Ótima escolha!<br><span style="color: #fdf17a;">${nome}</span> agora é seu parceiro.`;
+        textoMensagem.innerHTML = `Great choice !<br><span style="color: #fdf17a;">${nome}</span> now is your partner.`;
         caixaMensagem.classList.add('mostrar');
 
         setTimeout(() => {
@@ -416,7 +416,7 @@ async function buscarPokemons(termo) {
     });
 
     if (resultados.length === 0) {
-        container.innerHTML = '<p>Nenhum Pokémon encontrado.</p>';
+        container.innerHTML = '<p>No pokemon found.</p>';
         return;
     }
 

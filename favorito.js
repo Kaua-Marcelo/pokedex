@@ -89,7 +89,7 @@ function exibirFavoritos() {
   const favoritos = JSON.parse(localStorage.getItem("meusFavoritos")) || [];
 
   if (favoritos.length === 0) {
-    container.innerHTML = "<p>Nenhum favorito ainda.</p>";
+    container.innerHTML = "<p>No favorites yet.</p>";
     return;
   }
 
