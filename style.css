@@ -323,7 +323,6 @@ body.login #header-bar {
     min-width: 150px;   
     cursor: pointer;
 }
-/*css de pagina favoritos*/
 
 /* =========================================
    LAYOUT DO CONTAINER
@@ -342,8 +341,8 @@ cursor: pointer;
 
 overflow: hidden;
 border-radius: 30px;
-border: 3px solid rgba(0, 0, 0, 0.1); /* Uma borda sutil para definir o limite */
-box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombra um pouco mais forte para combinar com as cores */
+border: 3px solid rgba(0, 0, 0, 0.1);
+box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 padding: 20px ;
 outline: none;
 width: 200px;
@@ -359,25 +358,23 @@ gap: 12px;
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  
-  /* Gradiente Arco-íris PURO (Sem faixas brancas) */
+
   background: linear-gradient(
     115deg,
     transparent 15%,
-    rgba(255, 0, 0, 0.5) 30%,      /* Vermelho */
-    rgba(255, 200, 0, 0.5) 40%,    /* Amarelo */
-    rgba(0, 255, 0, 0.5) 50%,      /* Verde */
-    rgba(0, 255, 255, 0.5) 60%,    /* Ciano */
-    rgba(0, 0, 255, 0.5) 70%,      /* Azul */
-    rgba(200, 0, 255, 0.5) 80%,    /* Roxo/Magenta */
+    rgba(255, 0, 0, 0.5) 30%,     
+    rgba(255, 200, 0, 0.5) 40%,    
+    rgba(0, 255, 0, 0.5) 50%,      
+    rgba(0, 255, 255, 0.5) 60%,    
+    rgba(0, 0, 255, 0.5) 70%,      
+    rgba(200, 0, 255, 0.5) 80%,   
     transparent 95%
   );
   
-  /* Tamanho 300% para o arco-íris ficar largo e "varrer" o card */
+
   background-size: 200% 200%; 
   background-position: var(--foil-x, 50%) var(--foil-y, 50%);
   
-  /* Se quiser que as cores fiquem AINDA MAIS visíveis, troque 'color-dodge' por 'overlay' ou 'hard-light' */
   mix-blend-mode: color-dodge; 
   
   opacity: 0;
@@ -387,13 +384,14 @@ gap: 12px;
 }
 
 .card:hover::before {
-  opacity: 0.5; /* Se achar muito forte, pode abaixar para 0.5 */
+  opacity: 0.5;
 }
-.card.reset { transition: transform 0.5s ease; }
 
-/* =========================================
-   ELEMENTOS INTERNOS DO CARD
-   ========================================= */
+.card.reset { 
+    transition: transform 0.5s ease; 
+}
+
+
 .card img {
   width: 100%;
   height: 120px;
@@ -423,7 +421,6 @@ gap: 12px;
   width: 100%;
 }
 
-/* A pílula de Tipo */
 .tipo {
   padding: 5px 15px; 
   border-radius: 20px; 
@@ -433,7 +430,6 @@ gap: 12px;
   display: inline-block;
 }
 
-/* A Estrela */
 .estrela {
   font-size: 30px;
   color: #525252;
@@ -444,7 +440,6 @@ gap: 12px;
   transition: background-color 0.3s; 
 }
 
-/* As Cores dos Tipos */
 .tipo-fogo { background-color: #FFA500; }
 .tipo-agua { background-color: #3399FF; }
 .tipo-planta { background-color: #77CC55; }
@@ -452,8 +447,6 @@ gap: 12px;
 .tipo-eletrico { background-color: #FFCC00; }
 .tipo-venenoso { background-color: #AA5599; }
 .tipo-normal { background-color: #AAAA99; }
-
-/* mensagem de erro */
 
 .erro {
     color: red;
@@ -464,7 +457,6 @@ gap: 12px;
     align-self: flex-start;
 }
 
-/* FIRE */
 .Fire{
     background-color: #F97316;
     border: none;
@@ -473,7 +465,6 @@ gap: 12px;
     width: 90px;
 }
 
-/* WATER */
 .Water{
     background-color: #3B82F6;
     border: none;
@@ -482,7 +473,6 @@ gap: 12px;
     width: 90px;
 }
 
-/* GRASS */
 .Grass{
     background-color: #22C55E;
     border: none;
@@ -491,7 +481,6 @@ gap: 12px;
     width: 90px;
 }
 
-/* ELECTRIC */
 .Electric{
     background-color: #FACC15;
     border: none;
@@ -500,7 +489,6 @@ gap: 12px;
     width: 110px;
 }
 
-/* PSYCHIC */
 .Psychic{
     background-color: #EC4899;
     border: none;
@@ -509,7 +497,6 @@ gap: 12px;
     width: 110px;
 }
 
-/* ICE */
 .Ice{
     background-color: #7DD3FC;
     border: none;
@@ -518,7 +505,6 @@ gap: 12px;
     width: 80px;
 }
 
-/* DRAGON */
 .Dragon{
     background-color: #7C3AED;
     border: none;
@@ -527,7 +513,6 @@ gap: 12px;
     width: 110px;
 }
 
-/* DARK */
 .Dark{
     background-color: #44403C;
     color: white;
@@ -537,7 +522,6 @@ gap: 12px;
     width: 90px;
 }
 
-/* FAIRY */
 .Fairy{
     background-color: #F9A8D4;
     border: none;
@@ -546,7 +530,6 @@ gap: 12px;
     width: 90px;
 }
 
-/* NORMAL */
 .Normal{
     background-color: #A8A29E;
     border: none;
@@ -555,7 +538,6 @@ gap: 12px;
     width: 100px;
 }
 
-/* FIGHTING */
 .Fighting{
     background-color: #B91C1C;
     color: white;
@@ -565,7 +547,6 @@ gap: 12px;
     width: 110px;
 }
 
-/* FLYING */
 .Flying{
     background-color: #60A5FA;
     border: none;
@@ -574,7 +555,6 @@ gap: 12px;
     width: 100px;
 }
 
-/* POISON */
 .Poison{
     background-color: #A855F7;
     border: none;
@@ -583,7 +563,6 @@ gap: 12px;
     width: 100px;
 }
 
-/* GROUND */
 .Ground{
     background-color: #CA8A04;
     border: none;
@@ -592,7 +571,6 @@ gap: 12px;
     width: 100px;
 }
 
-/* ROCK */
 .Rock{
     background-color: #78716C;
     color: white;
@@ -602,7 +580,6 @@ gap: 12px;
     width: 90px;
 }
 
-/* BUG */
 .Bug{
     background-color: #84CC16;
     border: none;
@@ -611,7 +588,6 @@ gap: 12px;
     width: 80px;
 }
 
-/* GHOST */
 .Ghost{
     background-color: #6D28D9;
     color: white;
@@ -621,7 +597,6 @@ gap: 12px;
     width: 100px;
 }
 
-/* STEEL */
 .Steel{
     background-color: #94A3B8;
     border: none;
@@ -630,7 +605,6 @@ gap: 12px;
     width: 90px;
 }
 
-/* STELLAR */
 .Stellar{
     background-color: #38BDF8;
     border: none;
@@ -639,32 +613,26 @@ gap: 12px;
     width: 100px;
 }
 
-/* Cor Fantasma (Roxo escuro/azulado) */
 .tipo-fantasma { 
   background-color: #705898 !important;  
 }
 
-/* Cor Lutador (Marrom avermelhado/Tijolo) */
 .tipo-lutador { 
   background-color: #C03028 !important; 
 }
 
-/* Cor Terra (Amarelo queimado/Argila) */
 .tipo-terra { 
   background-color: #E0C068 !important; 
 }
 
-/* Cor Gelo (Azul claro cristalino) */
 .tipo-gelo { 
   background-color: #98D8D8 !important; 
 }
 
-/* Cor Dragão (Índigo/Roxo real) */
 .tipo-dragao { 
   background-color: #7038F8 !important;  
 }
 
-/* Cor Inseto (Verde lima/oliva) */
 .tipo-inseto { 
   background-color: #A8B820 !important; 
 }
@@ -678,24 +646,23 @@ gap: 12px;
 }
 
 .poke-gif {
-  height: 110px !important; /* Tamanho ideal para GIFs de Gen 5 */
+  height: 110px !important; 
   width: auto !important;
-  image-rendering: pixelated; /* Deixa os pixels nítidos e não borrados */
+  image-rendering: pixelated; 
   margin: auto;
   display: block;
 }
 
 #principal {
   display: flex;
-  flex-wrap: wrap;      /* Faz as cartas ficarem lado a lado e quebrarem linha */
-  gap: 0px;            /* Espaço entre uma carta e outra */
-  justify-content: center; /* Centraliza o bloco de cartas na tela */
-  padding: 40px 20px;   /* Espaço nas laterais e no topo */
-  width: 100%;          /* Garante que ocupe a largura total */
+  flex-wrap: wrap;
+  gap: 0px;    
+  justify-content: center;
+  padding: 40px 20px;   
+  width: 100%;          
   box-sizing: border-box;
 }
 
-/* Fundo com transição suave */
 .overlay-selecao {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -711,20 +678,17 @@ gap: 12px;
     flex-direction: column;
 }
 
-/* Classe que o JS vai adicionar para mostrar a tela */
 .overlay-selecao.ativo {
     opacity: 1;
     visibility: visible;
 }
 
-/* Container que coloca os 3 cards lado a lado */
 .cards-iniciais {
     display: flex;
     gap: 30px;
     perspective: 1000px;
 }
 
-/* O Título que fica pulsando */
 .titulo-escolha {
     color: #fff;
     font-family: 'Press Start 2P', cursive;
@@ -734,20 +698,17 @@ gap: 12px;
     animation: pulsarTexto 2s infinite ease-in-out;
 }
 
-/* Classe unificada dos cards iniciais */
 .card-inicial-animado {
-    opacity: 0; /* Começa invisível */
+    opacity: 0; 
     cursor: pointer;
     animation: entrarCard 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-/* Efeito de hover extra para os iniciais */
 .card-inicial-animado:hover {
     filter: brightness(1.1);
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
 }
 
-/* A animação correta de entrada */
 @keyframes entrarCard {
     from {
         opacity: 0;
@@ -759,38 +720,36 @@ gap: 12px;
     }
 }
 
-/* Animação do título */
 @keyframes pulsarTexto {
     0%, 100% { transform: scale(1); opacity: 0.8; }
     50% { transform: scale(1.05); opacity: 1; }
 }
 
-/* Estilo da mensagem flutuante */
 .mensagem-sucesso {
     position: fixed;
-    bottom: -100px; /* Começa escondida fora da tela por baixo */
+    bottom: -100px; 
     left: 50%;
-    transform: translateX(-50%); /* Centraliza perfeitamente */
+    transform: translateX(-50%); 
     background-color: rgba(0, 0, 0, 0.85);
     color: #fff;
     padding: 20px 40px;
     border-radius: 50px;
-    border: 2px solid #fff; /* Borda branca clássica */
-    font-family: 'Press Start 2P', cursive; /* Mantendo a vibe do jogo */
+    border: 2px solid #fff;
+    font-family: 'Press Start 2P', cursive; 
     font-size: 0.8rem;
     text-align: center;
     line-height: 1.5;
     z-index: 10000;
     opacity: 0;
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Efeito de "mola" */
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* Classe que o JS vai adicionar para a mensagem subir */
 .mensagem-sucesso.mostrar {
-    bottom: 50px; /* Sobe para ficar visível */
+    bottom: 50px; 
     opacity: 1;
 }
+
 .tipos {
   display: flex;
   flex-direction: column;  
