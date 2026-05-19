@@ -1,10 +1,7 @@
-// Coloque os imports na primeira linha para ele achar as cores e a animação
 import { coresDosTipos, coresCards } from '../utils/constants.js';
 import { inicializarAnimacoes } from '../components/card-motion.js';
 import { inicializarFavoritos } from './favorito.js';
 
-// ATENÇÃO: Se a função inicializarFavoritos() estiver no arquivo favorito.js, 
-// você também precisará importar ela aqui no topo!
 
 const itensPorPagina = 20;
 let resultadosAPI = [];
@@ -19,7 +16,7 @@ async function carregarPokemonsDoJSON() {
   if (!container) return;
 
   try {
-    const resposta = await axios.get('./data/pokemons.json'); // Única mudança: ajustei o caminho do JSON para a pasta data/
+    const resposta = await axios.get('./data/pokemons.json'); 
     resultadosAPI = resposta.data.results;
     paginaAtual = 0;
     chegouNoFim = false;
@@ -158,7 +155,7 @@ function criarHTMLCard(poke) {
   `;
 }
 
-function renderizarPokemonsNoContainer(pokemons) {
+function renderizarPokemonsNoContainer(pokemons) { //samuel
   const container = document.getElementById('principal');
   if (!container) return;
   container.innerHTML = pokemons.map(criarHTMLCard).join('');
