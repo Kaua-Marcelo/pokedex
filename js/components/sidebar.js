@@ -64,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       
       const href = link.getAttribute('href');
-      const page = link.dataset.page;
       
       sidebar.classList.remove('open');
       overlay.classList.remove('open');
@@ -72,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
       link.classList.add('active');
       
-      console.log('📱 Navegando para:', href, page);
+      console.log('📱 Navegando para:', href);
       
       if (href && href !== '#') {
         window.location.href = href;
