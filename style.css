@@ -440,6 +440,10 @@ gap: 12px;
   transition: background-color 0.3s; 
 }
 
+.estrela:hover {
+    color: gold;
+}
+
 .tipo-fogo { background-color: #FFA500; }
 .tipo-agua { background-color: #3399FF; }
 .tipo-planta { background-color: #77CC55; }
