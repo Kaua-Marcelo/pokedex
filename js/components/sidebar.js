@@ -76,11 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
       
       if (href && href !== '#') {
         window.location.href = href;
-      } else {
-        if (page === 'favoritos') {
-          document.querySelector('.header-title').textContent = 'FAVORITOS';
-          if (typeof loadFavoritos === 'function') loadFavoritos();
-        }
       }
     });
   });
