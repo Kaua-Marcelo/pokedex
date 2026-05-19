@@ -71,8 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
       link.classList.add('active');
       
-      console.log('📱 Navegando para:', href);
-      
       if (href && href !== '#') {
         window.location.href = href;
       }
