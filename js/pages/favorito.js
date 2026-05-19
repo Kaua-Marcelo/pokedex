@@ -1,41 +1,7 @@
-// fav.js
-var coresDosTipos = {
-  fire: "tipo-fogo",
-  water: "tipo-agua",
-  grass: "tipo-planta",
-  electric: "tipo-eletrico",
-  psychic: "tipo-psiquico",
-  poison: "tipo-venenoso",
-  normal: "tipo-normal",
-  ghost: "tipo-fantasma",
-  fighting: "tipo-lutador",
-  ground: "tipo-terra",
-  ice: "tipo-gelo",
-  dragon: "tipo-dragao",
-  bug: "tipo-inseto",
-  fairy: "tipo-fada",
-  flying: "tipo-voador"
-};
+import { coresDosTipos, coresCards } from '../utils/constants.js';
+import { inicializarAnimacoes } from '../components/card-motion.js';
 
-var coresCards = {
-  fire: "#ffcb9e",
-  water: "#9dbdf5",
-  grass: "#a3e0a1",
-  electric: "#fdf17a",
-  psychic: "#f9a8d4",
-  poison: "#c084fc",
-  normal: "#d1d1d1",
-  ghost: "#a78bfa",
-  fighting: "#f87171",
-  ground: "#d9b382",
-  ice: "#afeeee",
-  dragon: "#a78bfa",
-  bug: "#c1d063",
-  fairy: "#fbcfe8",
-  flying: "#9985d5"
-};
-
- function inicializarFavoritos() {
+export function inicializarFavoritos() {
   const cards = document.querySelectorAll(".card");
 
   cards.forEach((card) => {
@@ -82,7 +48,7 @@ var coresCards = {
   });
 }
 
-function exibirFavoritos() {
+export function exibirFavoritos() {
   const container = document.getElementById("favoritos");
   if (!container) return;
 
@@ -126,4 +92,5 @@ function exibirFavoritos() {
 if (document.getElementById("favoritos")) {
   exibirFavoritos();
   inicializarFavoritos();
+  inicializarAnimacoes();
 }

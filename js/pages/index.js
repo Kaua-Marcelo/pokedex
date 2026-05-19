@@ -1,38 +1,10 @@
-var coresDosTipos = {
-  "fire": "tipo-fogo",
-  "water": "tipo-agua",
-  "grass": "tipo-planta",
-  "electric": "tipo-eletrico",
-  "psychic": "tipo-psiquico",
-  "poison": "tipo-venenoso",
-  "normal": "tipo-normal",
-  "ghost": "tipo-fantasma",
-  "fighting": "tipo-lutador",
-  "ground": "tipo-terra",
-  "ice": "tipo-gelo",
-  "dragon": "tipo-dragao",
-  "bug": "tipo-inseto",
-  "fairy": "tipo-fada", 
-  "flying": "tipo-voador"
-};
+// Coloque os imports na primeira linha para ele achar as cores e a animação
+import { coresDosTipos, coresCards } from '../utils/constants.js';
+import { inicializarAnimacoes } from '../components/card-motion.js';
+import { inicializarFavoritos } from './favorito.js';
 
-var coresCards = {
-  "fire": "#ffcb9e",
-  "water": "#9dbdf5",
-  "grass": "#a3e0a1",
-  "electric": "#fdf17a",
-  "psychic": "#f9a8d4",
-  "poison": "#c084fc",
-  "normal": "#d1d1d1",
-  "ghost": "#a78bfa",
-  "fighting": "#f87171",
-  "ground": "#d9b382",
-  "ice": "#afeeee",
-  "dragon": "#a78bfa",
-  "bug": "#c1d063",
-  "fairy": "#fbcfe8",
-  "flying": "#9985d5"
-};
+// ATENÇÃO: Se a função inicializarFavoritos() estiver no arquivo favorito.js, 
+// você também precisará importar ela aqui no topo!
 
 const itensPorPagina = 20;
 let resultadosAPI = [];
@@ -47,7 +19,7 @@ async function carregarPokemonsDoJSON() {
   if (!container) return;
 
   try {
-    const resposta = await axios.get('./pokemons.json');
+    const resposta = await axios.get('./data/pokemons.json'); // Única mudança: ajustei o caminho do JSON para a pasta data/
     resultadosAPI = resposta.data.results;
     paginaAtual = 0;
     chegouNoFim = false;
@@ -264,123 +236,6 @@ function aplicarFiltroESortNosDetalhes(detalhes) {
   return resultado;
 }
 
-// --- FUNÇÃO 2: ANIMAÇÕES 3D E FOIL ---
-function inicializarAnimacoes() {
-  const cardsCriados = document.querySelectorAll('.card');
-  
-  cardsCriados.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      card.classList.remove('reset'); 
-      card.style.opacity = '1';
-      card.style.animation = 'none';
-      
-      const rect = card.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left; 
-      const mouseY = e.clientY - rect.top;  
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const maxRotation = 15;
-      const rotateX = ((mouseY - centerY) / centerY) * -maxRotation; 
-      const rotateY = ((mouseX - centerX) / centerX) * maxRotation;
-      
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-      
-      const percentX = (mouseX / rect.width) * 100;
-      const percentY = (mouseY / rect.height) * 100;
-      
-      card.style.setProperty('--luz-x', `${percentX}%`);
-      card.style.setProperty('--luz-y', `${percentY}%`);
-      card.style.setProperty('--foil-x', `${percentX}%`);
-      card.style.setProperty('--foil-y', `${percentY}%`);
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.classList.add('reset');
-      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-      card.style.setProperty('--luz-x', `50%`);
-      card.style.setProperty('--luz-y', `50%`);
-      card.style.setProperty('--foil-x', `50%`);
-      card.style.setProperty('--foil-y', `50%`);
-    });
-  });
-}
-
-// --- FUNÇÃO 3: ESCOLHA DE INICIAIS (USADA NO REGISTRO) ---
-async function mostrarEscolhaInicial() {
-    const tela = document.getElementById('tela-inicial');
-    const container = document.getElementById('container-iniciais');
-    
-    if(!tela || !container) return;
-
-    tela.classList.add('ativo');
-
-    const iniciaisIds = [1, 4, 7];
-    let htmlIniciais = "";
-
-    for (let i = 0; i < iniciaisIds.length; i++) {
-        const id = iniciaisIds[i];
-        const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${String(id)}`);
-        const poke = res.data;
-
-        const tipo = poke.types[0].type.name;
-        const corFundo = coresCards[tipo] || "#fff";
-        const classeCorTipo = coresDosTipos[tipo] || "tipo-normal";
-        const nome = poke.name.charAt(0).toUpperCase() + poke.name.slice(1);
-        const imagem = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`;
-
-        htmlIniciais += `
-            <div class="card card-inicial-animado" 
-                 style="background-color: ${corFundo}; animation-delay: ${0.4 + (i * 0.2)}s" 
-                 onclick="escolherPokemon('${nome}', ${id}, '${imagem}', '${tipo}')">
-                <div class="card-topo">
-                    <p class="Nome-principal">${nome}</p>
-                    <p>id ${String(id).padStart(3, '0')}</p>
-                </div>
-                <img src="${imagem}" class="poke-gif">
-                <div class="card-base">
-                    <div class="tipo ${classeCorTipo}">${tipo}</div>
-                    <div class="estrela">★</div>
-                </div>
-            </div>
-        `;
-    }
-
-    container.innerHTML = htmlIniciais;
-
-    setTimeout(() => {
-        inicializarAnimacoes();
-       
-    }, 500); 
-}
-
-// --- FUNÇÃO 4: SALVAR ESCOLHA ---
-function escolherPokemon(nome, id, imagem, tipo) {
-    console.log("1. Clicou no Pokémon:", nome);
-    const idFormatado = String(id).padStart(3, '0');
-    const inicial = [{ id: idFormatado, nome, imagem, tipo, tipos: [tipo], cor: coresCards[tipo] || '#ffffff' }];
-    localStorage.setItem("meusFavoritos", JSON.stringify(inicial));
-    console.log("2. Salvo no LocalStorage com sucesso!");
-
-    const caixaMensagem = document.getElementById('mensagem-sucesso');
-    const textoMensagem = document.getElementById('texto-mensagem');
-
-    if (caixaMensagem && textoMensagem) {
-        console.log("3. Encontrou o HTML da mensagem. Subindo a caixa!");
-        
-        textoMensagem.innerHTML = `Great choice !<br><span style="color: #fdf17a;">${nome}</span> now is your partner.`;
-        caixaMensagem.classList.add('mostrar');
-
-        setTimeout(() => {
-            console.log("4. Fim dos 3 segundos, indo para o login...");
-            window.location.href = "index.html";
-        }, 3000);
-    } else {
-        console.error("ERRO: Não achei as divs 'mensagem-sucesso' e 'texto-mensagem' no HTML!");
-        alert("Erro: HTML da mensagem não encontrado. Olhe o F12!");
-    }
-}
-
 if (document.getElementById('principal')) {
     carregarPokemonsDoJSON();
     window.addEventListener('scroll', onScrollCarregarMais);
@@ -425,6 +280,9 @@ async function buscarPokemons(termo) {
     renderizarPokemonsNoContainer(resultadoFinal);
 }
 
-document.querySelector(".btn-voltar").addEventListener("click", function() {
-    history.back(-1);
-});
+const btnVoltar = document.querySelector(".btn-voltar");
+if(btnVoltar) {
+    btnVoltar.addEventListener("click", function() {
+        history.back(-1);
+    });
+}
