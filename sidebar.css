@@ -25,7 +25,10 @@
 }
 
 .sidebar-header img {
-  filter: brightness(0) invert(1);
+  display: block;
+  width: 40px;
+  height: auto;
+  filter: none;
 }
 
 .sidebar-header h3 {
