@@ -32,14 +32,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 A Pokédex é uma aplicação Web interativa que permite ao usuário explorar e consultar informações detalhadas sobre os Pokémons  por meio de uma interface intuitiva e responsiva, o projeto consome dados da PokéAPI, garantindo informações sempre atualizadas. Desenvolvido como projeto acadêmico na UniAmérica!
 
-
-## 🎨 Design (Figma)
-
-Acesse o layout do projeto no Figma:
-https://www.figma.com/design/xd3dk3vdhwL7HE3bDAv8nK/Sem-t%C3%ADtulo?node-id=19-116&t=cyjRvEWvUQLgSlIn-1
-
-
-
 <p align="center">
 Desenvolvido por:<br/>
 </p>
