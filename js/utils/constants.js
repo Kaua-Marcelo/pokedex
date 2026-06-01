@@ -13,7 +13,9 @@ export const coresDosTipos = {
   "dragon": "tipo-dragao",
   "bug": "tipo-inseto",
   "fairy": "tipo-fada", 
-  "flying": "tipo-voador"
+  "flying": "tipo-voador",
+  "Stell": "tipo-metal", 
+  "dark": "tipo-sombrio"
 };
 
 export const coresCards = {
@@ -31,5 +33,8 @@ export const coresCards = {
   "dragon": "#a78bfa",
   "bug": "#c1d063",
   "fairy": "#fbcfe8",
-  "flying": "#9985d5"
+  "flying": "#9985d5",
+  "stell": "#90a3bd",
+  "dark": "#433d46",
+  "rock": "#B6A136"
 };
