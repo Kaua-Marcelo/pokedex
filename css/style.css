@@ -649,7 +649,14 @@ gap: 12px;
     background-color: #9985d5 !important;
 }
 
-.poke-gif {
+.tipo-metal{
+    background-color: #94A3B8 !important;
+}
+
+.tipo-sombrio{
+   background-color: #240f3a !important;
+}
+.poke-gif { 
   height: 110px !important; 
   width: auto !important;
   image-rendering: pixelated; 
