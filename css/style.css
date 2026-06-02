@@ -602,7 +602,7 @@ gap: 12px;
 }
 
 .Steel{
-    background-color: #94A3B8;
+    background-color: #1961c6;
     border: none;
     border-radius: 30px;
     padding: 5px;
@@ -650,11 +650,16 @@ gap: 12px;
 }
 
 .tipo-metal{
-    background-color: #94A3B8 !important;
+    background-color: #b8cdd9 !important;
 }
 
 .tipo-sombrio{
-   background-color: #240f3a !important;
+   background-color: #1a1520 !important;
+   color: #c8aee8;
+}
+
+.tipo-pedra{
+    background-color:  #8b7532 !important;
 }
 .poke-gif { 
   height: 110px !important; 
