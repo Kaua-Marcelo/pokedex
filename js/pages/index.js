@@ -16,8 +16,9 @@ async function carregarPokemonsDoJSON() {
   if (!container) return;
 
   try {
-    const resposta = await axios.get('./data/pokemons.json'); 
-    resultadosAPI = resposta.data.results;
+    const resposta = await fetch("https://pokeapi.co/api/v2/pokemon?limit=649"); 
+    const dados = await resposta.json()
+    resultadosAPI = dados.results;
     paginaAtual = 0;
     chegouNoFim = false;
 
@@ -47,12 +48,12 @@ async function carregarProximaPagina() {
   estaCarregando = true;
 
   try {
-    const respostas = await Promise.all(batch.map(p => axios.get(p.url)));
+    const respostas = await Promise.all(batch.map(p => fetch(p.url).then(r => r.json())));
     let htmlLote = "";
 
     for (let i = 0; i < respostas.length; i++) {
       const detalhe = respostas[i];
-      const poke = detalhe.data;
+      const poke = detalhe;
       cacheDetalhes.set(batch[i].url, poke);
       const tipoPrincipal = poke.types[0].type.name;
       const corFundo = coresCards[tipoPrincipal] || "#ffffff";
@@ -123,9 +124,10 @@ async function obterDetalhesPokemon(pokemon) {
   if (cacheDetalhes.has(pokemon.url)) {
     return cacheDetalhes.get(pokemon.url);
   }
-  const resposta = await axios.get(pokemon.url);
-  cacheDetalhes.set(pokemon.url, resposta.data);
-  return resposta.data;
+  const resposta = await fetch(pokemon.url);
+  const dados = await resposta.json()
+  cacheDetalhes.set(pokemon.url, dados);
+  return dados;
 }
 
 function criarHTMLCard(poke) {
