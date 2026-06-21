@@ -29,7 +29,7 @@ function removerFavorito(pokeId) {
   localStorage.setItem('meusFavoritos', JSON.stringify(atualizados));
 }
 
-function criarHTMLDetalhes(poke) {
+function criarHTMLDetalhes(poke, evolucoesHtml) {
   const tipos = poke.types.map(t => `<span class="tipo ${coresDosTipos[t.type.name] || 'tipo-normal'}">${t.type.name}</span>`).join('');
   const habilidades = poke.abilities.map(a => `<li>${a.ability.name}</li>`).join('');
   const status = poke.stats.map(s => `<li><strong>${s.stat.name}:</strong> ${s.base_stat}</li>`).join('');
@@ -75,11 +75,17 @@ function criarHTMLDetalhes(poke) {
               <p>${poke.weight / 10} kg</p>
             </div>
           </div>
+          <div class="pokemon-detail-section">
+            <h3>Evolutions</h3>
+            <div class="evolutions-grid">
+              ${evolucoesHtml}
+            </div>
+          </div>
         </div>
       </div>
     </div>
   `;
-} 
+}
 
 async function carregarDetalhesPokemon(nome) {
   const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${encodeURIComponent(nome)}`);
@@ -87,6 +93,62 @@ async function carregarDetalhesPokemon(nome) {
     throw new Error('Não foi possível carregar o Pokémon');
   }
   return resposta.json();
+}
+
+async function carregarEvolucoes(poke) {
+  const speciesRes = await fetch(poke.species.url);
+  if (!speciesRes.ok) {
+    return [];
+  }
+
+  const speciesData = await speciesRes.json();
+  if (!speciesData.evolution_chain?.url) {
+    return [];
+  }
+
+  const chainRes = await fetch(speciesData.evolution_chain.url);
+  if (!chainRes.ok) {
+    return [];
+  }
+
+  const chainData = await chainRes.json();
+  const evolucoes = [];
+
+  function percorreChain(node) {
+    if (!node) return;
+    const speciesName = node.species.name;
+    const speciesUrl = node.species.url;
+    const match = speciesUrl.match(/\/(\d+)\/?$/);
+    const speciesId = match ? Number(match[1]) : null;
+    if (speciesName) {
+      evolucoes.push({ name: speciesName, id: speciesId });
+    }
+    if (node.evolves_to && node.evolves_to.length > 0) {
+      node.evolves_to.forEach(percorreChain);
+    }
+  }
+
+  percorreChain(chainData.chain);
+  return evolucoes.filter((item, index, self) => self.findIndex(e => e.name === item.name) === index);
+}
+
+function criarHTMLEvolucoes(evolucoes) {
+  if (!evolucoes || evolucoes.length === 0) {
+    return '<p>Sem evoluções disponíveis.</p>';
+  }
+
+  return evolucoes.map(({ name, id }) => {
+    const imagem = id
+      ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`
+      : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${name}.gif`;
+
+    return `
+      <div class="evolution-card" data-evo-name="${name}">
+        <img src="${imagem}" alt="${formatarNome(name)}">
+        <p>${formatarNome(name)}</p>
+      </div>
+    `;
+  }).join('');
 }
 
 async function inicializarPaginaPoke() {
@@ -104,10 +166,13 @@ async function inicializarPaginaPoke() {
 
   try {
     const poke = await carregarDetalhesPokemon(nome);
-    container.innerHTML = criarHTMLDetalhes(poke);
+    const evolucoes = await carregarEvolucoes(poke);
+    const evolucoesHtml = criarHTMLEvolucoes(evolucoes);
+    container.innerHTML = criarHTMLDetalhes(poke, evolucoesHtml);
     inicializarAnimacoes();
     inicializarBotaoFavorito(poke);
     inicializarBotaoVoltar();
+    inicializarEvolucaoClick();
   } catch (error) {
     console.error(error);
     container.innerHTML = '<p>Erro ao carregar os detalhes do Pokémon.</p>';
@@ -153,6 +218,16 @@ function inicializarBotaoFavorito(poke) {
   });
 }
 
+function inicializarEvolucaoClick() {
+  const evolucoes = document.querySelectorAll('.evolution-card');
+  evolucoes.forEach(card => {
+    card.addEventListener('click', () => {
+      const nome = card.dataset.evoName;
+      if (!nome) return;
+      window.location.href = `poke.html?name=${encodeURIComponent(nome)}`;
+    });
+  });
+}
 
 if (document.getElementById('principal')) {
   inicializarPaginaPoke();
