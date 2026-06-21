@@ -46,6 +46,7 @@ async function carregarProximaPagina() {
   }
 
   estaCarregando = true;
+  mostrarLoadingScroll(); 
 
   try {
     const respostas = await Promise.all(batch.map(p => fetch(p.url).then(r => r.json())));
@@ -92,6 +93,7 @@ async function carregarProximaPagina() {
     console.error("Erro ao carregar o lote de pokémons:", error);
   } finally {
     estaCarregando = false;
+      removerLoadingScroll(); 
   }
 }
 
@@ -119,6 +121,24 @@ function onScrollCarregarMais() {
   if (distanciaRestante < 400) {
     carregarProximaPagina();
   }
+}
+
+function mostrarLoadingScroll() {
+  if (document.getElementById('loading-scroll')) return;
+  const container = document.getElementById('principal');
+  if (!container) return;
+
+  const loading = document.createElement('div');
+  loading.id = 'loading-scroll';
+  loading.className = 'loading-scroll';
+  loading.innerHTML = '<div class="spinner"></div>';
+
+  container.insertAdjacentElement('afterend', loading);
+}
+
+function removerLoadingScroll() {
+  const loading = document.getElementById('loading-scroll');
+  if (loading) loading.remove();
 }
 
 async function obterDetalhesPokemon(pokemon) {
