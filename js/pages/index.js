@@ -16,8 +16,8 @@ async function carregarPokemonsDoJSON() {
   if (!container) return;
 
   try {
-    const resposta = await fetch("https://pokeapi.co/api/v2/pokemon?limit=649"); 
-    const dados = await resposta.json()
+    const resposta = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100000");
+    const dados = await resposta.json();
     resultadosAPI = dados.results;
     paginaAtual = 0;
     chegouNoFim = false;
@@ -63,7 +63,7 @@ async function carregarProximaPagina() {
       const imagemAnimada = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${poke.id}.gif`;
 
       htmlLote += `
-      <div class="card" style="background-color: ${corFundo}" data-id="${idFormatado}">
+      <div class="card" style="background-color: ${corFundo}" data-id="${idFormatado}" data-poke-name="${poke.name}">
         <div class="card-topo">
           <p class="Nome-principal">${nomeCapitalizado}</p>
           <p>id ${idFormatado}</p>
@@ -87,6 +87,7 @@ async function carregarProximaPagina() {
 
     inicializarAnimacoes();
     inicializarFavoritos();
+    inicializarCliqueDetalhes();
   } catch (error) {
     console.error("Erro ao carregar o lote de pokémons:", error);
   } finally {
@@ -143,7 +144,7 @@ function criarHTMLCard(poke) {
   }).join('');
 
   return `
-    <div class="card" style="background-color: ${corFundo}" data-id="${idFormatado}">
+    <div class="card" style="background-color: ${corFundo}" data-id="${idFormatado}" data-poke-name="${poke.name}">
       <div class="card-topo">
         <p class="Nome-principal">${nomeCapitalizado}</p>
         <p>id ${idFormatado}</p>
@@ -163,6 +164,7 @@ function renderizarPokemonsNoContainer(pokemons) { //samuel
   container.innerHTML = pokemons.map(criarHTMLCard).join('');
   inicializarAnimacoes();
   inicializarFavoritos();
+  inicializarCliqueDetalhes();
 }
 
 async function renderizarPokemonsCarregados() {
@@ -284,4 +286,24 @@ if(btnVoltar) {
     btnVoltar.addEventListener("click", function() {
         history.back(-1);
     });
+}
+
+function inicializarCliqueDetalhes() {
+  const container = document.getElementById('principal');
+  if (!container) return;
+  if (container.dataset.clickInit === 'true') return;
+
+  container.dataset.clickInit = 'true';
+  container.addEventListener('click', (event) => {
+    if (event.target.closest('.estrela')) return;
+
+    const card = event.target.closest('.card');
+    if (!card) return;
+
+    const nomePokemon = card.dataset.pokeName;
+    if (!nomePokemon) return;
+
+    const url = `poke.html?name=${encodeURIComponent(nomePokemon)}`;
+    window.location.href = url;
+  });
 }

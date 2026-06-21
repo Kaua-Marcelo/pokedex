@@ -74,7 +74,7 @@ export function exibirFavoritos() {
       ).join('');
 
       return `
-        <div class="card" data-id="${p.id}" style="background-color: ${cor}">
+        <div class="card" data-id="${p.id}" data-poke-name="${p.nome.toLowerCase()}" style="background-color: ${cor}">
           <div class="card-topo">
             <p class="Nome-principal">${p.nome}</p>
             <p>id ${p.id}</p>
@@ -89,8 +89,27 @@ export function exibirFavoritos() {
     }).join("");
 }
 
+function inicializarCliqueDetalhesFavoritos() {
+  const container = document.getElementById('favoritos');
+  if (!container) return;
+  if (container.dataset.clickInit === 'true') return;
+
+  container.dataset.clickInit = 'true';
+  container.addEventListener('click', (event) => {
+    if (event.target.closest('.estrela')) return;
+
+    const card = event.target.closest('.card');
+    if (!card) return;
+
+    const nomePokemon = card.dataset.pokeName;
+    if (!nomePokemon) return;
+    window.location.href = `poke.html?name=${encodeURIComponent(nomePokemon)}`;
+  });
+}
+
 if (document.getElementById("favoritos")) {
   exibirFavoritos();
   inicializarFavoritos();
   inicializarAnimacoes();
+  inicializarCliqueDetalhesFavoritos();
 }
