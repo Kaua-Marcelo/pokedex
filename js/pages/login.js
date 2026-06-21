@@ -36,7 +36,10 @@ botao.addEventListener('click', () => {
         return
     }
 
-    localStorage.setItem("usuario", JSON.stringify(usuarioEncontrado))
+    const usuarioSessao = { user: usuarioEncontrado.user };
+    sessionStorage.setItem("usuario", JSON.stringify(usuarioSessao));
+    localStorage.removeItem("usuario");
+
     alert("Login realizado com sucesso!")
     window.location.href = "index.html"
 })

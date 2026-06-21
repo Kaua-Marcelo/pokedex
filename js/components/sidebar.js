@@ -5,9 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnLogout = document.getElementById('btnLogout');
   let overlay = document.querySelector('.sidebar-overlay');
 
-  const usuario = JSON.parse(localStorage.getItem('usuario'));
+  const usuario = JSON.parse(sessionStorage.getItem('usuario'));
   
   if (!usuario) {
+    localStorage.removeItem('usuario');
     window.location.href = 'login.html';
     return;
   }
@@ -18,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
   if (btnLogout) {
     btnLogout.addEventListener('click', () => {
+      sessionStorage.removeItem('usuario');
+      localStorage.removeItem('usuario');
       alert('Logout realizado!');
       window.location.href = 'login.html';
     });

@@ -134,9 +134,11 @@ window.escolherPokemon = function(nome, id, imagem, tipo) {
         textoMensagem.innerHTML = `Great choice !<br><span style="color: #fdf17a;">${nome}</span> now is your partner.`;
         caixaMensagem.classList.add('mostrar');
 
+        sessionStorage.setItem("usuario", JSON.stringify({ user: user.value }));
+
         setTimeout(() => {
-            console.log("4. Fim dos 3 segundos, indo para o login...");
-            window.location.href = "index.html"; 
+            console.log("4. Fim dos 3 segundos, indo para a Pokédex...");
+            window.location.href = "index.html";
         }, 3000);
     } else {
         console.error("ERRO: Não achei as divs 'mensagem-sucesso' e 'texto-mensagem' no HTML!");
