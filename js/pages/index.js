@@ -16,7 +16,7 @@ async function carregarPokemonsDoJSON() {
   if (!container) return;
 
   try {
-    const resposta = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100000");
+    const resposta = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20000");
     const dados = await resposta.json();
     resultadosAPI = dados.results;
     paginaAtual = 0;
