@@ -79,4 +79,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  const botaoVoltar = document.querySelector('.btn-voltar');
+  if (botaoVoltar) {
+    botaoVoltar.addEventListener('click', () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = 'index.html';
+      }
+    });
+  }
 });

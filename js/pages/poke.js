@@ -171,24 +171,11 @@ async function inicializarPaginaPoke() {
     container.innerHTML = criarHTMLDetalhes(poke, evolucoesHtml);
     inicializarAnimacoes();
     inicializarBotaoFavorito(poke);
-    inicializarBotaoVoltar();
     inicializarEvolucaoClick();
   } catch (error) {
     console.error(error);
     container.innerHTML = '<p>Erro ao carregar os detalhes do Pokémon.</p>';
   }
-}
-
-function inicializarBotaoVoltar() {
-  const botaoVoltar = document.querySelector('.btn-voltar');
-  if (!botaoVoltar) return;
-  botaoVoltar.addEventListener('click', () => {
-    if (window.history.length > 1) {
-      window.history.back();
-    } else {
-      window.location.href = 'index.html';
-    }
-  });
 }
 
 function inicializarBotaoFavorito(poke) {

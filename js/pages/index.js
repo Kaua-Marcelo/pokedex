@@ -301,13 +301,6 @@ async function buscarPokemons(termo) {
     renderizarPokemonsNoContainer(resultadoFinal);
 }
 
-const btnVoltar = document.querySelector(".btn-voltar");
-if(btnVoltar) {
-    btnVoltar.addEventListener("click", function() {
-        history.back(-1);
-    });
-}
-
 function inicializarCliqueDetalhes() {
   const container = document.getElementById('principal');
   if (!container) return;
