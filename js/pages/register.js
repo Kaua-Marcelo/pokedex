@@ -2,9 +2,6 @@
 import { coresDosTipos, coresCards } from '../utils/constants.js';
 import { inicializarAnimacoes } from '../components/card-motion.js';
 
-// =========================================================
-// ETAPA 1: LÓGICA DO FORMULÁRIO DE REGISTRO
-// =========================================================
 const inputs = document.querySelectorAll(".form-register input");
 const user = inputs[0];
 const senha = inputs[1];
@@ -68,9 +65,6 @@ function limparFormularioDeRegistro() {
     if(titulo) titulo.textContent = "BEM-VINDO, TREINADOR!";
 }
 
-// =========================================================
-// ETAPA 2: LÓGICA DE ESCOLHA DOS POKÉMONS INICIAIS
-// =========================================================
 async function mostrarEscolhaInicial() {
     const tela = document.getElementById('tela-inicial');
     const container = document.getElementById('container-iniciais');

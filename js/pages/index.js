@@ -10,7 +10,6 @@ let estaCarregando = false;
 let chegouNoFim = false;
 const cacheDetalhes = new Map();
 
-// --- FUNÇÃO 1: CARREGAR TUDO (USADA NA INDEX) ---
 async function carregarPokemonsDoJSON() {
   const container = document.getElementById('principal');
   if (!container) return;
