@@ -1,6 +1,6 @@
 <h1 align="center"> Pokedex </h1>
 <p align="center">
-    <img src="https://img.shields.io/badge/status-em%20desenvolvimento-yellow" alt="badge">
+    <img src="https://img.shields.io/badge/status-conclu%C3%ADdo-brightgreen" alt="badge">
 </p>
 
 <p align="center">
